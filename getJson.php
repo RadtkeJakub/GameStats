@@ -1,6 +1,6 @@
 <?php
     
-    $key='?api_key=RGAPI-f13b705f-a459-4b81-9f01-6f7623821f07';
+    $key='?api_key=RGAPI-a319d88e-821c-41d6-8409-7b24c779380e';
     
     //taking list of challengers 
     $getChallengerBySoloQ = "/lol/league/v3/challengerleagues/by-queue/RANKED_SOLO_5x5";
