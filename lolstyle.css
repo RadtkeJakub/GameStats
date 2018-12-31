@@ -7,3 +7,26 @@
     margin-right: 16px;
     font-size: 17px;
 }
+.staatFont
+{
+    font-family: 'Staatliches', cursive;
+}
+.darkBackground
+{
+    background-color: #404c59;
+}
+.tableBackground
+{
+    background-color: #404c59 !important;
+}
+
+.rowBackground
+{
+    background-color: #4b5968;
+}
+
+.tableImg
+{
+
+}
+
