@@ -33,6 +33,8 @@ $getSummonerMatchHistory = "/lol/match/v4/matchlists/by-account/";
 $getDetailsById = "/lol/match/v4/matches/";
 $getTimelinesById = "/lol/match/v4/timelines/by-match/";
 
+$soloRankedQueue = "?queue=420";
+
 foreach ($leagues as $league) {
     checkRequestCounter(1);
     $getSummonerId = file_get_contents($url.$league."?".$key);
@@ -50,7 +52,7 @@ foreach ($leagues as $league) {
 
         //GET INFO ABOUT ACCOUNT MATCH HISTORY matches[0-99](platformId,gameId,champion,queue,season,timestamp,role,lane),totalGames
         checkRequestCounter(1);
-        $getSummonerHistory = file_get_contents($url . $getSummonerMatchHistory . $accountId . "?" . $key);
+        $getSummonerHistory = file_get_contents($url . $getSummonerMatchHistory . $accountId .$soloRankedQueue. "&" . $key);
         $objSummonerHistory = json_decode($getSummonerHistory);
         $matches = $objSummonerHistory->matches;
 
@@ -62,7 +64,6 @@ foreach ($leagues as $league) {
             $gameRows = $getGame -> num_rows;
 
             if ($gameRows == 1) continue;
-            echo $gameRows."<br />";
             $region = $match->platformId;
             $matchDate = date('Y-m-d H:i:s', ($match->timestamp) / 1000);
 
@@ -89,16 +90,12 @@ foreach ($leagues as $league) {
                 $role = $participant->timeline->role;
                 $lane = $participant->timeline->lane;
 
-                if ($role == "SOLO" && $lane == "TOP") {
-                    $role = "TOP";
-                } elseif ($role == "NONE" && $lane == "JUNGLE") {
-                    $role = "JUNGLE";
-                } elseif ($role == "SOLO" && $lane == "MIDDLE") {
-                    $role = "MID";
-                } elseif ($role == "DUO_CARRY" && $lane == "BOTTOM") {
-                    $role = "CARRY";
-                } elseif ($role == "DUO_SUPPORT" && $lane == "BOTTOM") {
+                if ($role == "DUO_SUPPORT")
+                {
                     $role = "SUPPORT";
+                } else
+                {
+                    $role = $lane;
                 }
 
                 $accountId = $objMatchDetails->participantIdentities[$i]->player->accountId;
@@ -111,19 +108,24 @@ foreach ($leagues as $league) {
                 if ($participant->stats->win == "Win") $win = 1;
                 else $win = 0;
 
+                $itemInfoJson = file_get_contents("http://ddragon.leagueoflegends.com/cdn/8.24.1/data/en_GB/item.json");
+                $itemInfo = json_decode($itemInfoJson);
+
                 for($position = 0;$position < 7; $position++)
                 {
                   $items = "item".$position;
                   $item = $participant -> stats -> $items;
-                  if($item != 0) $playerEndItems -> execute();
+                  $fromItem = $itemInfo -> data -> $item -> from;
+                  $intoItem = $itemInfo -> data -> $item -> into;
+
+                  if($fromItem  && !$intoItem)
+                  {
+                      if($item != 0)
+                      {
+                          $playerItems -> execute();
+                      }
+                  }
                 }
-                $item0 = $participant->stats->item0;
-                $item1 = $participant->stats->item1;
-                $item2 = $participant->stats->item2;
-                $item3 = $participant->stats->item3;
-                $item4 = $participant->stats->item4;
-                $item5 = $participant->stats->item5;
-                $item6 = $participant->stats->item6;
 
                 $mainPerk = $participant->stats->perkPrimaryStyle;
                 $subPerk = $participant->stats->perkSubStyle;
@@ -135,14 +137,19 @@ foreach ($leagues as $league) {
                 $Perk6 = $participant->stats->perk5;
                 //ADD PERK INFO TO DATABASE
                 $playerRunes -> execute();
+
+                $spell = $participant -> spell1Id;
+                $playerSpells -> execute();
+
+                $spell = $participant -> spell2Id;
+                $playerSpells -> execute();
+
                 $kill = $participant->stats->kills;
                 $death = $participant->stats->deaths;
                 $assist = $participant->stats->assists;
                 $championId = $participant->championId;
 
-
                 $participantId = $i + 1;
-
 
                 //ADD DATA TO PLAYERGAME TABLE
                 $playerGame->execute();
@@ -151,14 +158,9 @@ foreach ($leagues as $league) {
                     $events = $frame->events;
                     foreach ($events as $event) {
                         $type = $event->type;
-                        if (($type == "ITEM_PURCHASED" || $type == "ITEM_SOLD" || $type == "ITEM_DESTROYED") && ($event->participantId) == $participantId) {
-                            $itemId = $event->itemId;
-                            $itemTime = $event->timestamp;
-
-                            $playerItems->execute();
-                        } elseif ($type == "SKILL_LEVEL_UP" && ($event->participantId) == $participantId) {
+                        if ($type == "SKILL_LEVEL_UP" && ($event->participantId) == $participantId) {
                             $event->timestamp;
-                            $skillslot = $event->skillSlot;
+                            $skillSlot = $event->skillSlot;
                             $addPointTime = $event->timestamp;
 
                             $playerPoints->execute();

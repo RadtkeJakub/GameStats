@@ -11,6 +11,7 @@
     if($conn->connect_error) {
         die("Connection failed: ". $conn->connect_error);
     }
+
     $getJson = file_get_contents("http://ddragon.leagueoflegends.com/cdn/8.24.1/data/en_GB/championFull.json");
     $championRiotInfo = json_decode($getJson);
     $championName = $championRiotInfo -> keys;
@@ -52,7 +53,8 @@
     function championItems($championId) {
         $itemsWinRatioSql = "SELECT i.Item, COUNT(*) as Repeats,
                           SUM(CASE WHEN Win = 1 THEN 1 ELSE 0 END) as Wins
-                          FROM (SELECT Item0 AS Item, Win FROM playergame
+                          FROM (
+                              SELECT Item0 AS Item, Win FROM playergame WHERE RiotChampionId = ".$championId."
                               UNION ALL
                               SELECT Item1 AS Item, Win FROM playergame WHERE RiotChampionId = ".$championId."
                               UNION ALL
@@ -74,7 +76,7 @@
         $i = 0;
         $items = array();
         while ($row = $itemWinRatioQuery->fetch_assoc()) {
-            if ($row['Item'] == 0 || $row['Repeats'] < 30) continue;
+            if ($row['Item'] == 0 || $row['Repeats'] < 2) continue;
             $items[$i][0] = $row['Item'];
             $items[$i][1] = $row['Repeats'];
             $items[$i][2] = $row['Wins'];
