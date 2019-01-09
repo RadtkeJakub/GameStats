@@ -40,6 +40,10 @@
     $playerItems = $conn -> prepare("INSERT INTO playeritems(RiotAccountId,RiotGameId,Item,Position) VALUES(?,?,?,?)");
     $playerItems -> bind_param("siii",$accountId,$gameId,$item,$position);
 
+    //PREPARE ITEMS HISTORY
+    $playerItemsHistory = $conn -> prepare("INSERT INTO playeritemshistory(RiotAccountId, RiotGameId, Type, RiotItemId, Seconds) VALUES (?, ?, ?, ?, ?)");
+    $playerItemsHistory -> bind_param("sisii", $accountId,$gameId,$type,$itemId,$itemTime);
+
     //PREPARE PLAYER SPELLS
     $playerSpells= $conn -> prepare("INSERT INTO playerspells(RiotAccountId,RiotGameId,Spell) VALUES(?,?,?)");
     $playerSpells -> bind_param("sii",$accountId,$gameId,$spell);

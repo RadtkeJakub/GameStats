@@ -14,6 +14,7 @@
 .darkBackground
 {
     background-color: #404c59;
+    color:lightgray;
 }
 .tableBackground
 {
@@ -25,8 +26,13 @@
     background-color: #4b5968;
 }
 
-.tableImg
+.tableIcon
 {
-
+    cursor: pointer;
 }
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    background-color: #2b333b;
+}
+
 

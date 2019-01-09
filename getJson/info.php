@@ -93,7 +93,8 @@ foreach ($leagues as $league) {
                 if ($role == "DUO_SUPPORT")
                 {
                     $role = "SUPPORT";
-                } else
+                }
+                else
                 {
                     $role = $lane;
                 }
@@ -156,9 +157,18 @@ foreach ($leagues as $league) {
 
                 foreach ($frames as $j => $frame) {
                     $events = $frame->events;
-                    foreach ($events as $event) {
+                    foreach ($events as $event)
+                    {
                         $type = $event->type;
-                        if ($type == "SKILL_LEVEL_UP" && ($event->participantId) == $participantId) {
+                        if (($type == "ITEM_PURCHASED" || $type == "ITEM_SOLD" || $type == "ITEM_DESTROYED") && ($event->participantId) == $participantId)
+                        {
+                            $itemId = $event->itemId;
+                            $itemTime = $event->timestamp;
+
+                            $playerItemsHistory->execute();
+                        }
+                        elseif ($type == "SKILL_LEVEL_UP" && ($event->participantId) == $participantId)
+                        {
                             $event->timestamp;
                             $skillSlot = $event->skillSlot;
                             $addPointTime = $event->timestamp;
