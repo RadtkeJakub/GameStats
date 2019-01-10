@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
     <link href="https://fonts.googleapis.com/css?family=Staatliches" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://ddragon.leagueoflegends.com/cdn/8.24.1/css/view.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="lolstyle.css">
     <?php
         define("TOP","TOP");
@@ -24,7 +25,7 @@
         <!-- Navigation bar -->
         <nav class="navbar sticky-top navbar-dark bg-dark navbar-expand-lg ">
             <!-- Logo -->
-            <a class="navbar-brand d-none d-sm-block" href="#">
+            <a class="navbar-brand d-none d-sm-block" href="/inzynierkav2">
                 <img src="logo.png" width="180" class="d-inline-block mr-1 align-bottom " alt="">
             </a>
             <a class="navbar-brand d-block d-sm-none" href="#">

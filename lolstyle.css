@@ -31,8 +31,17 @@
     cursor: pointer;
 }
 
-.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
-    background-color: #2b333b;
+#role:hover
+{
+    opacity: 0.3;
 }
 
+.center
+{
+    display: inline-block;
+}
 
+#championsTable.td:hover
+{
+    background-color: #2b333b;
+}

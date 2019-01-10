@@ -1,17 +1,26 @@
 <?php
     require 'header.php';
-    require 'All.php';
+    require 'Class/All.php';
 //    error_reporting(0);
 //    ini_set('display_errors', 0);
 ?>
 
 <div class="row darkBackground staatFont">
-    <div class="col-12 col-md-8  text-center mt-5">
-        asd
+    <div class="col-12 col-md-8  mt-5">
+        <div class="text-center align-middle mt-5" >
+            <form class="form-inline my-2 my-lg-0 center">
+                <div class="input-group mb-3 mt-5">
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="button2"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
     <div class="col-md-4 d-none d-md-block mt-5">
         Champions
-        <table class="table table-borderless table-sm">
+        <table class="table table-borderless table-sm" id="championsTable">
             <thead>
                 <tr>
                 <?php
@@ -145,6 +154,7 @@
                     echo "</td>";
                     echo "</tr>";
                 }
+                unset($winRate);
                 ?>
             </tbody>
         </table>

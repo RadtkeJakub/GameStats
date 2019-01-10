@@ -39,10 +39,16 @@ class All
 
     function getChampions()
     {
-        $sql = 'SELECT RiotChampionId,COUNT(*) AS Total ,ROUND(100*SUM(CASE WHEN Win = 1 THEN 1 ELSE 0 END)/count(*)) AS Percent
-                FROM playergame 
-                GROUP BY RiotChampionId 
-                ORDER BY `percent` DESC';
+        if ($this->role) $sql = 'SELECT RiotChampionId,COUNT(*) AS Total ,ROUND(100*SUM(CASE WHEN Win = 1 THEN 1 ELSE 0 END)/count(*)) AS Percent
+                                 FROM playergame 
+                                 WHERE role = "'.$this->role.'"
+                                 GROUP BY RiotChampionId 
+                                 ORDER BY `percent` DESC';
+        else $sql = 'SELECT RiotChampionId,COUNT(*) AS Total ,ROUND(100*SUM(CASE WHEN Win = 1 THEN 1 ELSE 0 END)/count(*)) AS Percent
+                     FROM playergame 
+                     GROUP BY RiotChampionId 
+                     ORDER BY `percent` DESC';
+
         $result = ($this->conn) -> query($sql);
 
         $i = 0;
