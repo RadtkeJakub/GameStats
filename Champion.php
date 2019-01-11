@@ -27,7 +27,7 @@ require 'Class/Champion.php';
     }
     else $setRole = null;
 
-    $champion = new Champion($_GET['champion'],$setRole);
+    $champion = new Champion($_GET['champion']);
     $roles = $champion -> getRoles();
     $name = $champion -> getName();
     ?>
@@ -185,54 +185,56 @@ require 'Class/Champion.php';
                 <tbody>
                 <tr>
                 <?php
-                for ($i = 0; $i < 5 ; $i++)
+                foreach ($items as $i => $item )
                 {
-                    $itemId = $items[$i][0];
+                    $itemId = $item[0];
                     $itemName = $itemsInfo -> data -> $itemId -> name;
                     $itemDescription = $itemsInfo -> data -> $itemId -> description;
                     echo "<td data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($itemName,ENT_QUOTES)."</b><br><br>".htmlspecialchars($itemDescription,ENT_QUOTES)."'>";
-                    echo "<img class = 'img-fluid' alt = 'image of ".$items[$i][0]."' src = 'http://ddragon.leagueoflegends.com/cdn/8.24.1/img/item/".$items[$i][0].".png'>";
+                    echo "<img class = 'img-fluid' alt = 'image of ".$item[0]."' src = 'http://ddragon.leagueoflegends.com/cdn/8.24.1/img/item/".$item[0].".png'>";
                     echo "</td>";
+                    if ($i == 4) break;
                 }
                 ?>
                 </tr>
                 <tr>
                     <?php
-                    for ($i = 0; $i < 5 ; $i++)
+                    foreach ($items as $i => $item )
                     {
-
                         echo "<td class ='";
-                        if($items[$i][2] > 50) echo "text-success";
-                        else if ($items[$i][2] < 50) echo "text-danger";
+                        if($item[2] > 50) echo "text-success";
+                        else if ($item[2] < 50) echo "text-danger";
                         echo "' >";
-                        echo $items[$i][2]."</td>";
+                        echo $item[2]."</td>";
+                        if ($i == 4) break;
                     }
                     ?>
                 </tr>
                 <tr>
                     <?php
-                    for ($i = 5; $i < 10 ; $i++)
+                    foreach ($items as $i => $item )
                     {
-
-                        $itemId = $items[$i][0];
+                        if ($i < 5) continue;
+                        $itemId = $item[0];
                         $itemName = $itemsInfo -> data -> $itemId -> name;
                         $itemDescription = $itemsInfo -> data -> $itemId -> description;
                         echo "<td data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($itemName,ENT_QUOTES)."</b><br><br>".htmlspecialchars($itemDescription,ENT_QUOTES)."'>";
-                        echo "<img class = 'img-fluid' alt = 'image of ".$items[$i][0]."' src = 'http://ddragon.leagueoflegends.com/cdn/8.24.1/img/item/".$items[$i][0].".png'>";
+                        echo "<img class = 'img-fluid' alt = 'image of ".$item[0]."' src = 'http://ddragon.leagueoflegends.com/cdn/8.24.1/img/item/".$item[0].".png'>";
                         echo "</td>";
+
                     }
                     ?>
                 </tr>
                 <tr>
                     <?php
-                    for ($i = 5; $i < 10 ; $i++)
+                    foreach ($items as $i => $item )
                     {
-
+                        if ($i < 5) continue;
                         echo "<td class ='";
-                        if($items[$i][2] > 50) echo "text-success";
-                        else if ($items[$i][2] < 50) echo "text-danger";
+                        if($item[2] > 50) echo "text-success";
+                        else if ($item[2] < 50) echo "text-danger";
                         echo "' >";
-                        echo $items[$i][2]."</td>";
+                        echo $item[2]."</td>";
                     }
                     ?>
                 </tr>

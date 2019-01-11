@@ -121,7 +121,7 @@ class Champion
         $i = 0;
         $items = array();
 
-        if($result -> num_rows == 10)
+        if($result -> num_rows > 4)
         {
             while($row = $result -> fetch_assoc())
             {
