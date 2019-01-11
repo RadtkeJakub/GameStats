@@ -20,7 +20,7 @@
     </div>
     <div class="col-md-4 d-none d-md-block mt-5">
         Champions
-        <table class="table table-borderless table-sm" id="championsTable">
+        <table class="table table-borderless table-sm">
             <thead>
                 <tr>
                 <?php

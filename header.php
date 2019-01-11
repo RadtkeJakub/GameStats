@@ -23,7 +23,7 @@
 <div class="container bg-dark">
     <header>
         <!-- Navigation bar -->
-        <nav class="navbar sticky-top navbar-dark bg-dark navbar-expand-lg ">
+        <nav class="navbar sticky-top navbar-dark bg-dark navbar-expand-lg " style="background-color:#171a1c">
             <!-- Logo -->
             <a class="navbar-brand d-none d-sm-block" href="/inzynierkav2">
                 <img src="logo.png" width="180" class="d-inline-block mr-1 align-bottom " alt="">

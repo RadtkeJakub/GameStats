@@ -55,7 +55,7 @@
                     </form>
                     <form action="champions.php" method="post" id="role">
                         <input type="hidden" name="role" value="<?php echo MID ?>">
-                        <input type="image" src="icons/mid.png" alt="Submit" class="mr-2"/>
+                        <input type="image" src="icons/middle.png" alt="Submit" class="mr-2"/>
                     </form>
                     <form action="champions.php" method="post" id="role">
                         <input type="hidden" name="role" value="<?php echo BOT ?>">
@@ -66,7 +66,6 @@
                         <input type="image" src="icons/support.png" alt="Submit"/>
                     </form>
                 </div>
-
             </div>
             <table class="table table-borderless table-striped table-hover" id="championsTable">
                 <thead>
@@ -83,7 +82,7 @@
                     $champions = $all -> getChampions();
                     foreach ($champions as $i => $champion)
                     {
-                        echo "<tr class='tableIcon' onclick=\"window.location='/inzynierkav2/champion.php?".$champion[0]."';\">";
+                        echo "<tr class='tableIcon' onclick=\"window.location='/inzynierkav2/champion.php?champion=".$champion[0]."';\">";
                         echo "<td class='float-left align-middle '><img src='http://ddragon.leagueoflegends.com/cdn/8.24.1/img/champion/".$champion[1].".png' width='48px' height='48px' alt='champion image' class='image mr-2'> ";
                         echo $champion[1]."</td>";
                         echo "<td class='align-middle ";

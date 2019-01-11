@@ -12,6 +12,7 @@ class Champion
     private $championId;
     private $role;
     private $championInfo;
+    private $itemInfo;
 
     function __construct($championId,$role = null)
     {
@@ -31,6 +32,9 @@ class Champion
         $getJson = file_get_contents("http://ddragon.leagueoflegends.com/cdn/8.24.1/data/en_GB/championFull.json");
         $this -> championInfo = json_decode($getJson);
 
+        $getItemJson = file_get_contents("http://ddragon.leagueoflegends.com/cdn/8.24.1/data/en_GB/item.json");
+        $this -> itemInfo = json_decode($getItemJson);
+
         $this -> championId = $championId;
         $this -> role = $role;
     }
@@ -42,6 +46,30 @@ class Champion
         $championName = $championInfo -> keys -> $championId;
         if($championName) return $championName;
         else return "NO DATA";
+    }
+
+    function getRoles()
+    {
+        $sql = 'SELECT DISTINCT role FROM playergame WHERE RiotChampionId = '.$this -> championId;
+
+        $result = ($this->conn) -> query($sql);
+
+        $roles = array();
+        $i = 0;
+
+        if($result -> num_rows > 0)
+        {
+            while($row = $result -> fetch_assoc())
+            {
+                $roles[$i] = $row['role'];
+                $i++;
+            }
+            return $roles;
+        }
+        else {
+            $roles[0] = "NO DATA";
+            return $roles;
+        }
     }
 
     function getWinRatio()
@@ -79,21 +107,21 @@ class Champion
                                 RIGHT JOIN playergame p 
                                 ON CONCAT(i.RiotAccountId,i.RiotGameId) = CONCAT(p.RiotAccountId,p.RiotGameId) WHERE i.item IS NOT NULL AND p.RiotChampionId = '.$this -> championId.' AND p.role = "'.$this -> role.'"
                                 GROUP BY i.item  
-                                ORDER BY `Winrate`  DESC LIMIT 6';
+                                ORDER BY `Winrate`  DESC LIMIT 10';
 
         else $sql = 'SELECT i.Item,p.RiotChampionId,COUNT(i.item) AS Total, ROUND(100*SUM(CASE WHEN Win = 1 THEN 1 ELSE 0 END)/COUNT(i.Item)) as Winrate
                      FROM playeritems i 
                      RIGHT JOIN playergame p 
                      ON CONCAT(i.RiotAccountId,i.RiotGameId) = CONCAT(p.RiotAccountId,p.RiotGameId) WHERE i.item IS NOT NULL AND p.RiotChampionId = '.$this -> championId.'
                      GROUP BY i.item  
-                     ORDER BY `Winrate`  DESC LIMIT 6';
+                     ORDER BY `Winrate`  DESC LIMIT 10';
 
         $result = ($this->conn) -> query($sql);
 
         $i = 0;
         $items = array();
 
-        if($result -> num_rows == 6)
+        if($result -> num_rows == 10)
         {
             while($row = $result -> fetch_assoc())
             {
@@ -219,7 +247,7 @@ class Champion
                                 WHERE RiotChampionId != '.$this -> championId.'
                                 GROUP BY RiotChampionId  
                                 ORDER BY `Winrate`  DESC
-                                LIMIT 8';
+                                LIMIT 5';
 
         else $sql = 'SELECT RiotChampionId,COUNT(RiotChampionId) AS Total, ROUND(100*SUM(CASE WHEN Win = 1 THEN 1 ELSE 0 END)/COUNT(RiotChampionId)) as Winrate
                      FROM playergame t1
@@ -228,14 +256,14 @@ class Champion
                      WHERE RiotChampionId != '.$this -> championId.'
                      GROUP BY RiotChampionId  
                      ORDER BY `Winrate`  DESC
-                     LIMIT 8';
+                     LIMIT 5';
 
         $result = ($this->conn) -> query($sql);
 
         $i = 0;
         $teamMatchup = array();
 
-        if($result -> num_rows == 8)
+        if($result -> num_rows == 5)
         {
             while($row = $result -> fetch_assoc())
             {
@@ -267,7 +295,7 @@ class Champion
                                 WHERE RiotChampionId != '.$this -> championId.'
                                 GROUP BY RiotChampionId  
                                 ORDER BY `Winrate`  ASC
-                                LIMIT 8';
+                                LIMIT 5';
 
         else $sql = 'SELECT RiotChampionId,COUNT(RiotChampionId) AS Total, ROUND(100*SUM(CASE WHEN Win = 1 THEN 1 ELSE 0 END)/COUNT(RiotChampionId)) as Winrate
                      FROM playergame t1
@@ -276,14 +304,14 @@ class Champion
                      WHERE RiotChampionId != '.$this -> championId.'
                      GROUP BY RiotChampionId  
                      ORDER BY `Winrate`  ASC
-                     LIMIT 8';
+                     LIMIT 5';
 
         $result = ($this->conn) -> query($sql);
 
         $i = 0;
         $teamMatchup = array();
 
-        if($result -> num_rows == 8)
+        if($result -> num_rows == 5)
         {
             while($row = $result -> fetch_assoc())
             {
@@ -314,7 +342,7 @@ class Champion
                                 ON t1.RiotGameId = t2.RiotGameId AND t1.Team != t2.Team
                                 GROUP BY RiotChampionId  
 								ORDER BY `Winrate` ASC
-                                LIMIT 8';
+                                LIMIT 5';
 
         else $sql = 'SELECT RiotChampionId,COUNT(RiotChampionId) AS Total, ROUND(100*SUM(CASE WHEN Win = 1 THEN 1 ELSE 0 END)/COUNT(RiotChampionId)) as Winrate
                      FROM playergame t1
@@ -322,20 +350,20 @@ class Champion
                      ON t1.RiotGameId = t2.RiotGameId AND t1.Team != t2.Team
                      GROUP BY RiotChampionId  
                      ORDER BY `Winrate` ASC
-                     LIMIT 8';
+                     LIMIT 5';
 
         $result = ($this->conn) -> query($sql);
 
         $i = 0;
         $enemyMatchup = array();
 
-        if($result -> num_rows == 8)
+        if($result -> num_rows == 5)
         {
             while($row = $result -> fetch_assoc())
             {
                 $enemyMatchup[$i][0] = $row['RiotChampionId'];
                 $enemyMatchup[$i][1] = $row['Total'];
-                $enemyMatchup[$i][2] = $row['Winrate']."%";
+                $enemyMatchup[$i][2] = $row['Winrate'];
                 $i++;
             }
             return $enemyMatchup;
@@ -360,7 +388,7 @@ class Champion
                                 ON t1.RiotGameId = t2.RiotGameId AND t1.Team != t2.Team
                                 GROUP BY RiotChampionId  
 								ORDER BY `Winrate` DESC
-                                LIMIT 8';
+                                LIMIT 5';
 
         else $sql = 'SELECT RiotChampionId,COUNT(RiotChampionId) AS Total, ROUND(100*SUM(CASE WHEN Win = 1 THEN 1 ELSE 0 END)/COUNT(RiotChampionId)) as Winrate
                      FROM playergame t1
@@ -368,26 +396,26 @@ class Champion
                      ON t1.RiotGameId = t2.RiotGameId AND t1.Team != t2.Team
                      GROUP BY RiotChampionId  
                      ORDER BY `Winrate` DESC
-                     LIMIT 8';
+                     LIMIT 5';
 
         $result = ($this->conn) -> query($sql);
 
         $i = 0;
         $enemyMatchup = array();
 
-        if($result -> num_rows == 8)
+        if($result -> num_rows == 5)
         {
             while($row = $result -> fetch_assoc())
             {
                 $enemyMatchup[$i][0] = $row['RiotChampionId'];
                 $enemyMatchup[$i][1] = $row['Total'];
-                $enemyMatchup[$i][2] = $row['Winrate']."%";
+                $enemyMatchup[$i][2] = $row['Winrate'];
                 $i++;
             }
             return $enemyMatchup;
         }
         else {
-            for($i=0;$i<8;$i++)
+            for($i=0;$i<5;$i++)
             {
                 for($j=0;$j<3;$j++)
                 {
@@ -408,7 +436,7 @@ class Champion
                                 ON t1.RiotAccountId = t2.RiotAccountId
                                 GROUP BY t1.SummonerName  
                                 ORDER BY `Winrate` DESC
-                                LIMIT 3';
+                                LIMIT 5';
 
         else $sql = 'SELECT t1.SummonerName,COUNT(t1.RiotAccountId) AS Total, ROUND(100*SUM(CASE WHEN Win = 1 THEN 1 ELSE 0 END)/COUNT(t1.RiotAccountId)) as Winrate
                      FROM player t1
@@ -418,14 +446,14 @@ class Champion
                      ON t1.RiotAccountId = t2.RiotAccountId
                      GROUP BY t1.SummonerName  
                      ORDER BY `Winrate` DESC
-                     LIMIT 3';
+                     LIMIT 5';
 
         $result = ($this->conn) -> query($sql);
 
         $i = 0;
         $pros = array();
 
-        if($result -> num_rows == 3)
+        if($result -> num_rows == 5)
         {
             while($row = $result -> fetch_assoc())
             {
@@ -437,7 +465,7 @@ class Champion
             return $pros;
         }
         else {
-            for($i=0;$i<3;$i++)
+            for($i=0;$i<5;$i++)
             {
                 for($j=0;$j<3;$j++)
                 {
