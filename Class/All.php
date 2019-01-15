@@ -131,14 +131,27 @@ class All
 
     function getPros()
     {
-        $sql = 'SELECT t1.SummonerName,COUNT(t1.RiotAccountId) AS Total, ROUND(100*SUM(CASE WHEN Win = 1 THEN 1 ELSE 0 END)/COUNT(t1.RiotAccountId)) as Winrate
-                FROM player t1
-                RIGHT JOIN (SELECT RiotAccountId,Win
-                            FROM playergame) t2
-                ON t1.RiotAccountId = t2.RiotAccountId
-                GROUP BY t1.SummonerName  
-                ORDER BY `Winrate` DESC
-                LIMIT 10';
+        $sql = 'SELECT tab1.RiotAccountId
+                      ,tab1.SummonerName
+                      ,tab2.Role
+                      ,tab2.Total
+                      ,tab2.Winrate
+                From player tab1
+                LEFT JOIN (
+                            SELECT g.RiotAccountId
+                                  ,g.Role
+                                  ,g.Total
+                                  ,MAX(g.Winrate) as Winrate
+                            FROM(
+                                SELECT RiotAccountId
+                                      ,Role
+                                      ,COUNT(RiotAccountId) AS Total
+                                      ,ROUND(100*SUM(CASE WHEN Win = 1 THEN 1 ELSE 0 END)/COUNT(RiotAccountId)) as Winrate
+                                FROM playergame
+                                GROUP BY Role,RiotAccountId  ) g GROUP BY g.RiotAccountId  ) tab2
+                ON tab1.RiotAccountId = tab2.RiotAccountId
+                GROUP BY tab1.RiotAccountId  
+                ORDER BY `tab2`.`Winrate` DESC';
 
         $result = ($this->conn) -> query($sql);
 
@@ -150,8 +163,9 @@ class All
             while($row = $result -> fetch_assoc())
             {
                 $pros[$i][0] = $row['SummonerName'];
-                $pros[$i][1] = $row['Total'];
-                $pros[$i][2] = $row['Winrate']."%";
+                $pros[$i][1] = $row['Role'];
+                $pros[$i][2] = $row['Total'];
+                $pros[$i][3] = $row['Winrate']."%";
 
                 $i++;
             }

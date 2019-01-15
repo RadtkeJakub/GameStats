@@ -28,7 +28,7 @@
             <a class="navbar-brand d-none d-sm-block" href="/inzynierkav2">
                 <img src="logo.png" width="180" class="d-inline-block mr-1 align-bottom " alt="">
             </a>
-            <a class="navbar-brand d-block d-sm-none" href="#">
+            <a class="d-block d-sm-none d-md-block" href="/inzynierkav2" style="color:lightgrey; text-decoration:none;">
                 Home
             </a>
 
@@ -41,15 +41,15 @@
             <div class="collapse navbar-collapse" id="mainmenu">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="champions.php">Champions</a>
+                        <a class="nav-link" href="champions.php" style="color:lightgrey;">Champions</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Pros</a>
+                        <a class="nav-link" href="pros.php" style="color:lightgrey;">Pros</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Info</a>
+                        <a class="nav-link" href="#" style="color:lightgrey;">Info</a>
                     </li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0">

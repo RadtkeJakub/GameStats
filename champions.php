@@ -86,8 +86,8 @@
                         echo "<td class='float-left align-middle '><img src='http://ddragon.leagueoflegends.com/cdn/8.24.1/img/champion/".$champion[1].".png' width='48px' height='48px' alt='champion image' class='image mr-2'> ";
                         echo $champion[1]."</td>";
                         echo "<td class='align-middle ";
-                        if($champions[$i][3] > 50) echo "text-success";
-                        else if ($champions[$i][3] < 50) echo "text-danger";
+                        if($champion[3] > 50) echo "text-success";
+                        else if ($champion[3] < 50) echo "text-danger";
                         echo "' style='text-align: right'><span class='mr-2'>".$champion[3]."</span></td>";
                         echo "</tr>";
                     }

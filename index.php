@@ -147,10 +147,10 @@
                     echo $pros[$i][0];
                     echo "</td>";
                     echo "<td align='right' class='align-middle ";
-                    if($pros[$i][2] > 50) echo "text-success";
-                    else if ($pros[$i][2] < 50) echo "text-danger";
+                    if($pros[$i][3] > 50) echo "text-success";
+                    else if ($pros[$i][3] < 50) echo "text-danger";
                     echo "'>";
-                    echo $pros[$i][2];
+                    echo $pros[$i][3];
                     echo "</td>";
                     echo "</tr>";
                 }
