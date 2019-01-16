@@ -162,10 +162,11 @@ class All
         {
             while($row = $result -> fetch_assoc())
             {
-                $pros[$i][0] = $row['SummonerName'];
-                $pros[$i][1] = $row['Role'];
-                $pros[$i][2] = $row['Total'];
-                $pros[$i][3] = $row['Winrate']."%";
+                $pros[$i][0] = $row['RiotAccountId'];
+                $pros[$i][1] = $row['SummonerName'];
+                $pros[$i][2] = $row['Role'];
+                $pros[$i][3] = $row['Total'];
+                $pros[$i][4] = $row['Winrate']."%";
 
                 $i++;
             }

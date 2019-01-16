@@ -144,13 +144,13 @@
                 {
                     echo "<tr class = 'tableIcon' onclick=\"window.location='#';\">";
                     echo "<td class='align-middle'>";
-                    echo $pros[$i][0];
+                    echo $pros[$i][1];
                     echo "</td>";
                     echo "<td align='right' class='align-middle ";
-                    if($pros[$i][3] > 50) echo "text-success";
-                    else if ($pros[$i][3] < 50) echo "text-danger";
+                    if($pros[$i][4] > 50) echo "text-success";
+                    else if ($pros[$i][4] < 50) echo "text-danger";
                     echo "'>";
-                    echo $pros[$i][3];
+                    echo $pros[$i][4];
                     echo "</td>";
                     echo "</tr>";
                 }

@@ -50,7 +50,7 @@ class Champion
 
     function getRoles()
     {
-        $sql = 'SELECT DISTINCT role FROM playergame WHERE RiotChampionId = '.$this -> championId;
+        $sql = 'SELECT COUNT(*) AS Total,role FROM playergame WHERE RiotChampionId = '.$this -> championId.' GROUP BY role';
 
         $result = ($this->conn) -> query($sql);
 
@@ -263,7 +263,7 @@ class Champion
         $i = 0;
         $teamMatchup = array();
 
-        if($result -> num_rows == 5)
+        if($result -> num_rows > 0)
         {
             while($row = $result -> fetch_assoc())
             {
@@ -311,7 +311,7 @@ class Champion
         $i = 0;
         $teamMatchup = array();
 
-        if($result -> num_rows == 5)
+        if($result -> num_rows > 0)
         {
             while($row = $result -> fetch_assoc())
             {
@@ -357,7 +357,7 @@ class Champion
         $i = 0;
         $enemyMatchup = array();
 
-        if($result -> num_rows == 5)
+        if($result -> num_rows > 0)
         {
             while($row = $result -> fetch_assoc())
             {
@@ -403,7 +403,7 @@ class Champion
         $i = 0;
         $enemyMatchup = array();
 
-        if($result -> num_rows == 5)
+        if($result -> num_rows > 0)
         {
             while($row = $result -> fetch_assoc())
             {
@@ -453,7 +453,7 @@ class Champion
         $i = 0;
         $pros = array();
 
-        if($result -> num_rows == 5)
+        if($result -> num_rows > 0)
         {
             while($row = $result -> fetch_assoc())
             {

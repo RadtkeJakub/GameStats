@@ -21,11 +21,6 @@
     background-color: #404c59 !important;
 }
 
-.rowBackground
-{
-    background-color: #4b5968;
-}
-
 .tableIcon
 {
     cursor: pointer;
@@ -36,6 +31,11 @@
     opacity: 0.3;
 }
 
+.smallTr
+{
+    max-height: 10px !important;
+}
+
 .center
 {
     display: inline-block;
@@ -44,4 +44,9 @@
 #championsTable.td:hover
 {
     background-color: #2b333b;
+}
+
+.btn-block
+{
+    padding:0;
 }

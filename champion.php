@@ -330,14 +330,16 @@ require 'Class/Champion.php';
                 $bestVS = $champion ->getBestEnemies();
                 $championInfoJson = file_get_contents("http://ddragon.leagueoflegends.com/cdn/8.24.1/data/en_GB/championFull.json");
                 $championInfo = json_decode($championInfoJson);
-                for($i=0;$i<5;$i++)
+                foreach($bestVS as $i => $best)
                 {
-                    if ($bestWith[$i][0] == $bestVS[$i][0])
+                    if($i == 5) break;
+
+                    if ($bestWith[$i][0] == $best[0])
                     {
                         echo "<br> NO DATA";
                         break;
                     }
-                    $mateId = $bestVS[$i][0];
+                    $mateId = $best[0];
                     $mateName = $championInfo -> keys -> $mateId;
                     $mateTitle = $championInfo -> data -> $mateName -> title;
                     echo "<th data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($mateName,ENT_QUOTES)."</b><br>".htmlspecialchars($mateTitle,ENT_QUOTES)."'>";
@@ -350,15 +352,17 @@ require 'Class/Champion.php';
             <tbody>
             <tr>
                 <?php
-                for($i=0;$i<5;$i++)
+                foreach($bestVS as $i => $best)
                 {
-                    $bestVS[$i][2] = 100 - $bestVS[$i][2];
-                    if ($bestWith[$i][0] == $bestVS[$i][0]) continue;
+                    if($i == 5) break;
+
+                    $best[2] = 100 - $best[2];
+                    if ($bestWith[$i][0] == $best[0]) continue;
                     echo "<td align='center' class='";
-                    if($bestVS[$i][2] > 50) echo "text-success";
-                    else if ($bestVS[$i][2] < 50) echo "text-danger";
+                    if($best[2] > 50) echo "text-success";
+                    else if ($best[2] < 50) echo "text-danger";
                     echo "'>";
-                    echo $bestVS[$i][2];
+                    echo $best[2];
                     echo "%</td>";
                 }
                 ?>
@@ -373,14 +377,17 @@ require 'Class/Champion.php';
                 $worstVS = $champion ->getWorstEnemies();
                 $championInfoJson = file_get_contents("http://ddragon.leagueoflegends.com/cdn/8.24.1/data/en_GB/championFull.json");
                 $championInfo = json_decode($championInfoJson);
-                for($i=0;$i<5;$i++)
+
+                foreach($worstVS as $i => $worst)
                 {
-                    if ($bestVS[$i][0] == $worstVS[$i][0])
+                    if($i == 5) break;
+
+                    if ($bestVS[$i][0] == $worst[0])
                     {
                         echo "<br> NO DATA";
                         break;
                     }
-                    $mateId = $worstVS[$i][0];
+                    $mateId = $worst[0];
                     $mateName = $championInfo -> keys -> $mateId;
                     $mateTitle = $championInfo -> data -> $mateName -> title;
                     echo "<th data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($mateName,ENT_QUOTES)."</b><br>".htmlspecialchars($mateTitle,ENT_QUOTES)."'>";
@@ -393,15 +400,17 @@ require 'Class/Champion.php';
             <tbody>
             <tr>
                 <?php
-                for($i=0;$i<5;$i++)
+                foreach($worstVS as $i => $worst)
                 {
-                    $worstVS[$i][2] = 100 - $worstVS[$i][2];
-                    if ($worstWith[$i][0] == $worstVS[$i][0]) continue;
+                    if($i == 5) break;
+
+                    $worst[2] = 100 - $worst[2];
+                    if ($worstWith[$i][0] == $worst[0]) continue;
                     echo "<td align='center' class='";
-                    if($worstVS[$i][2] > 50) echo "text-success";
-                    else if ($worstVS[$i][2] < 50) echo "text-danger";
+                    if($worst[2] > 50) echo "text-success";
+                    else if ($worst[2] < 50) echo "text-danger";
                     echo "'>";
-                    echo $worstVS[$i][2];
+                    echo $worst[2];
                     echo "%</td>";
                 }
                 ?>
@@ -418,17 +427,19 @@ require 'Class/Champion.php';
             <tbody>
             <?php
             $pros = $champion -> getPros();
-            for($i=0;$i<5;$i++)
+            foreach($pros as $i =>$pro)
             {
+                if($i == 5) break;
+
                 echo "<tr class = 'tableIcon' onclick=\"window.location='#';\">";
                 echo "<td class='align-middle'>";
-                echo $pros[$i][0];
+                echo $pro[0];
                 echo "</td>";
                 echo "<td align='right' class='align-middle ";
-                if($pros[$i][2] > 50) echo "text-success";
-                else if ($pros[$i][2] < 50) echo "text-danger";
+                if($pro[2] > 50) echo "text-success";
+                else if ($pro[2] < 50) echo "text-danger";
                 echo "'>";
-                echo $pros[$i][2];
+                echo $pro[2];
                 echo "</td>";
                 echo "</tr>";
             }

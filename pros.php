@@ -83,17 +83,17 @@ require 'Class/All.php';
                 {
                     if (isset($_POST['role']) && $_POST['role'] != "")
                     {
-                        if($pro[1] != $_POST['role']) continue;
+                        if($pro[2] != $_POST['role']) continue;
                     }
-                    if($pro[1] == TOP || $pro[1] == JUNGLE || $pro[1] == MID || $pro[1] == BOT || $pro[1] == SUPP)
+                    if($pro[2] == TOP || $pro[2] == JUNGLE || $pro[2] == MID || $pro[2] == BOT || $pro[2] == SUPP)
                     {
                         echo "<tr class='tableIcon' onclick=\"window.location='/inzynierkav2/pro.php?pro=".$pro[0]."';\">";
-                        echo "<td class='float-left align-middle '><img src='icons/".$pro[1].".png' width='30px' height='30px' alt='pro image' class='image mr-2'> ";
-                        echo $pro[0]."</td>";
+                        echo "<td class='float-left align-middle '><img src='icons/".$pro[2].".png' width='30px' height='30px' alt='pro image' class='image mr-2'> ";
+                        echo $pro[1]."</td>";
                         echo "<td class='align-middle ";
-                        if($pro[3] > 50) echo "text-success";
-                        else if ($pro[3] < 50) echo "text-danger";
-                        echo "' style='text-align: right'><span class='mr-2'>".$pro[3]."</span></td>";
+                        if($pro[4] > 50) echo "text-success";
+                        else if ($pro[4] < 50) echo "text-danger";
+                        echo "' style='text-align: right'><span class='mr-2'>".$pro[4]."</span></td>";
                         echo "</tr>";
                     }
                 }
