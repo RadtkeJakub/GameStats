@@ -148,8 +148,10 @@ class All
                                       ,COUNT(RiotAccountId) AS Total
                                       ,ROUND(100*SUM(CASE WHEN Win = 1 THEN 1 ELSE 0 END)/COUNT(RiotAccountId)) as Winrate
                                 FROM playergame
-                                GROUP BY Role,RiotAccountId  ) g GROUP BY g.RiotAccountId  ) tab2
+                                GROUP BY Role,RiotAccountId
+                          		HAVING Total > 5) g GROUP BY g.RiotAccountId  ) tab2
                 ON tab1.RiotAccountId = tab2.RiotAccountId
+                WHERE tab2.Role IS NOT NULL
                 GROUP BY tab1.RiotAccountId  
                 ORDER BY `tab2`.`Winrate` DESC';
 

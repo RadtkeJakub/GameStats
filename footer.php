@@ -14,7 +14,29 @@
 <script>
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
-    })
+    });
+
+    $(".gamesButton").on("click", function() {
+        if($(this).closest("table").find(".collapse.champion").collapse("hide"))
+        {
+            $(this).closest("table").find(".collapse.champion").collapse("show");
+        }
+        else
+        {
+            $(this).closest("table").find(".collapse.champion").collapse("hide");
+        }
+    });
+
+    $(".championsButton").on("click", function() {
+        if($(this).siblings(".collapse").collapse("hide"))
+        {
+            $(this).siblings(".collapse").collapse("show");
+        }
+        else
+        {
+            $(this).siblings(".collapse").collapse("hide");
+        }
+    });
 </script>
 </body>
 

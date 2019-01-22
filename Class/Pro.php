@@ -150,6 +150,31 @@ class Pro
         }
     }
 
+    function getGames()
+    {
+        if ($this -> role) $sql = 'SELECT RiotGameId FROM playergame WHERE RiotAccountId = "'.$this -> riotAccountId.'"';
+        else $sql = 'SELECT RiotGameId FROM playergame WHERE RiotAccountId = "'.$this -> riotAccountId.'" AND role = "'.$this -> role.'"';
+
+        $result = ($this->conn) -> query($sql);
+
+        $i = 0;
+        $games = array();
+
+        if($result -> num_rows > 0)
+        {
+            while($row = $result -> fetch_assoc())
+            {
+                $games[$i] = $row['RiotGameId'];
+                $i++;
+            }
+            return $games;
+        }
+        else {
+            $games[0] = "NO DATA";
+            return $games;
+        }
+    }
+
     function __destruct()
     {
         mysqli_close($this -> conn);

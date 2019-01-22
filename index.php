@@ -10,7 +10,7 @@
         <div class="text-center align-middle mt-5" >
             <form class="form-inline my-2 my-lg-0 center">
                 <div class="input-group mb-3 mt-5">
-                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search" id="mainSearch">
                     <div class="input-group-append">
                         <button class="btn btn-outline-secondary" type="button" id="button2"><i class="fas fa-search"></i></button>
                     </div>
@@ -118,14 +118,16 @@
             </tr>
             <tr>
                 <?php
-                for($i=5;$i<10;$i++)
+                foreach($items as $i => $item)
                 {
                     echo "<td align='center' class='";
-                    if($items[$i][2] > 50) echo "text-success";
-                    else if ($items[$i][2] < 50) echo "text-danger";
+                    if($item[2] > 50) echo "text-success";
+                    else if ($item[2] < 50) echo "text-danger";
                     echo "'>";
-                    echo $items[$i][2];
+                    echo $item[2];
                     echo "</td>";
+
+                    if($i == 4) break;
                 }
                 ?>
             </tr>
@@ -140,19 +142,21 @@
             <tbody>
                 <?php
                 $pros = $winRate ->getPros();
-                for($i=0;$i<5;$i++)
+                foreach ($pros as $i => $pro)
                 {
                     echo "<tr class = 'tableIcon' onclick=\"window.location='#';\">";
                     echo "<td class='align-middle'>";
-                    echo $pros[$i][1];
+                    echo $pro[1];
                     echo "</td>";
                     echo "<td align='right' class='align-middle ";
-                    if($pros[$i][4] > 50) echo "text-success";
-                    else if ($pros[$i][4] < 50) echo "text-danger";
+                    if($pro[4] > 50) echo "text-success";
+                    else if ($pro[4] < 50) echo "text-danger";
                     echo "'>";
-                    echo $pros[$i][4];
+                    echo $pro[4];
                     echo "</td>";
                     echo "</tr>";
+
+                    if($i == 4) break;
                 }
                 unset($winRate);
                 ?>

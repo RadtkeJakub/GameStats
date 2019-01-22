@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
     <link href="https://fonts.googleapis.com/css?family=Staatliches" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="http://ddragon.leagueoflegends.com/cdn/8.24.1/css/view.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="lolstyle.css">
     <?php
         define("TOP","TOP");
