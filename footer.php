@@ -16,25 +16,36 @@
         $('[data-toggle="tooltip"]').tooltip()
     });
 
+    // $(".gamesButton").on("click", function() {
+    //     if($(this).closest("table").find(".collapse.champion").collapse("hide"))
+    //     {
+    //         $(this).closest("table").find(".collapse.champion").collapse("show");
+    //     }
+    //     else
+    //     {
+    //         $(this).closest("table").find(".collapse.champion").collapse("hide");
+    //     }
+    // });
+
     $(".gamesButton").on("click", function() {
-        if($(this).closest("table").find(".collapse.champion").collapse("hide"))
+        if($(this).closest("tr").nextUntil(".stop").collapse("hide"))
         {
-            $(this).closest("table").find(".collapse.champion").collapse("show");
+            $(this).closest("tr").nextUntil(".stop").collapse("show")
         }
         else
         {
-            $(this).closest("table").find(".collapse.champion").collapse("hide");
+            $(this).closest("tr").nextUntil(".stop").collapse("hide")
         }
     });
 
     $(".championsButton").on("click", function() {
-        if($(this).siblings(".collapse").collapse("hide"))
+        if($(this).find(".collapse").collapse("hide"))
         {
-            $(this).siblings(".collapse").collapse("show");
+            $(this).find(".collapse").collapse("show");
         }
         else
         {
-            $(this).siblings(".collapse").collapse("hide");
+            $(this).find(".collapse").collapse("hide");
         }
     });
 </script>

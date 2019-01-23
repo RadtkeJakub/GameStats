@@ -1,8 +1,9 @@
 <?php
-require 'Class/All.php';
 require 'header.php';
+require 'Class/All.php';
 require 'Class/Champion.php';
 require 'Class/Pro.php';
+require 'Class/GamesDetails.php';
 ?>
 
 <div class="row darkBackground">
@@ -33,8 +34,12 @@ require 'Class/Pro.php';
     $pro = new Pro($riotAccountId,$setRole);
     $roles = $pro -> getRoles();
     $name = $pro -> getName();
-    ?>
 
+    $gamesDetails = new GamesDetails($riotAccountId);
+    $matchesHistory = $gamesDetails -> getMatchHistory();
+
+
+    ?>
     <!-- NAME OF PRO PLAYER-->
     <div class="col-md-8 col-sm-12 staatFont">
             <div class="text-center align-middle mt-3">
@@ -83,23 +88,91 @@ require 'Class/Pro.php';
 
             $itemsInfoJson = file_get_contents("http://ddragon.leagueoflegends.com/cdn/8.24.1/data/en_GB/item.json");
             $itemsInfo = json_decode($itemsInfoJson);
+
+            $championInfoJson = file_get_contents("http://ddragon.leagueoflegends.com/cdn/8.24.1/data/en_GB/championFull.json");
+            $championInfo = json_decode($championInfoJson);
             ?>
-            <table class="table table-dark table-sm table-bordered">
-                <tr>
-                    <th class="mt-0 mb-0 border-0">
-                        <button type="button" class="btn btn-secondary btn-lg btn-block gamesButton" data-toggle="collapse">
-                            Main
-                        </button>
-                    </th>
-                </tr>
-                <tr class="collapse champion">
-                    <td class="mt-0 mb-0 border-0">
-                        <button type="button" class="btn btn-dark btn-lg btn-block championsButton" data-toggle="collapse">
-                            Champion
-                        </button>
-                        <div class="collapse" style="border-color:red;border-style:solid"></div>
-                    </td>
-                </tr>
+            <h4>Match History</h4>
+            <table class="table table-striped table-dark table-sm table-bordered">
+                <?php
+                    foreach($matchesHistory as $matchHistory)
+                    {
+                        foreach($matchHistory as $i => $gameId)
+                        {
+                            if($i == 0)
+                            {
+                                echo '<tr class="stop border-bottom border-secondary userSelect">';
+                                echo '<td class="mt-0 mb-0 border-0 gamesButton tableIcon tableHover" onclick>';
+                                $players = $gamesDetails -> getTeams($gameId);
+                                $dateAndPatch = $gamesDetails -> getDateAndPatch($gameId);
+                                // player[0] = RiotChampionId player[1] = 1 if game won/0 if not
+
+                                foreach ($players as $j => $player)
+                                {
+                                    $championId = $player[0];
+                                    $championName = $championInfo -> keys -> $championId;
+                                    $championTitle = $championInfo -> data -> $championName -> title;
+                                    echo "<img class='img-fluid ml-1 mr-1 border ";
+                                    if($riotAccountId === $player[2]) echo "border-info";
+                                    else if($player[1] == 1) echo "border-success";
+                                    else echo "border-danger";
+                                    echo "' alt = 'image of ".$championName."' src = 'http://ddragon.leagueoflegends.com/cdn/8.24.1/img/champion/".$championName.".png' width=60px height=60px data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($championName,ENT_QUOTES)."</b><br>".htmlspecialchars($championTitle,ENT_QUOTES)."' >";
+                                    if ($j == 4) echo "<br><span style='color:white;'>VS</span><br>";
+                                }
+                                echo '</td>';
+                                echo '</tr>';
+                            }
+                            else
+                            {
+                                $champion = $gamesDetails -> getChampion($matchHistory[0],$gameId);
+                                $championName = $championInfo -> keys -> $champion;
+                                $championTitle = $championInfo -> data -> $championName -> title;
+                                $summoners = $gamesDetails -> getSummoners($matchHistory[0],$gameId);
+                                $mainRunes = $gamesDetails -> getMainRunes($matchHistory[0],$gameId);
+
+                                echo '<tr class="collapse champion border-bottom border-secondary tableIcon userSelect">';
+                                echo '<td class="mt-0 mb-0 border-0 championsButton" onclick>';
+                                echo "<img class='img-fluid mr-3 border ";
+                                if($riotAccountId === $gameId) echo "border-info";
+                                else if($i <= 5) echo "border-success";
+                                else echo "border-danger";
+                                echo "' alt = 'image of ".$championName."' src = 'http://ddragon.leagueoflegends.com/cdn/8.24.1/img/champion/".$championName.".png' width=60px height=60px data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($championName,ENT_QUOTES)."</b><br>".htmlspecialchars($championTitle,ENT_QUOTES)."' >";
+
+                                $mainRuneName = array();
+                                $mainRuneImg = array();
+                                foreach($mainRunes as $j => $mainRune)
+                                {
+                                    foreach($runesInfo as $mainRuneInfo)
+                                    {
+                                        if($mainRune == $mainRuneInfo -> id)
+                                        {
+                                            $mainRuneName[$j] = $mainRuneInfo -> key;
+                                            $mainRuneImg[$j] = $mainRuneInfo -> icon;
+                                        }
+                                    }
+                                }
+                                echo "<div  class ='mr-3' style='width: 40px; height: 40px; position: relative; display: inline-block; ' data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($mainRuneName[0],ENT_QUOTES)."/".htmlspecialchars($mainRuneName[1],ENT_QUOTES)."</b>'>";
+                                echo "<img class='img-fluid mr-3 ' alt = 'image of ".$mainRuneName[0]."' src = 'http://ddragon.leagueoflegends.com/cdn/img/".$mainRuneImg[0]."' width=40px height=40px>";
+                                echo "<img id='img2' class='img-fluid mr-3' alt = 'image of ".$mainRuneName[1]."' src = 'http://ddragon.leagueoflegends.com/cdn/img/".$mainRuneImg[1]."' width=20px height=20px style='background-color:black'>";
+                                echo '</div>';
+
+                                foreach($summoners as $summoner)
+                                {
+                                    foreach($summonerSpells as $summonerSpell)
+                                    {
+                                        if($summoner == $summonerSpell -> key)
+                                        {
+                                            echo "<img class='img-fluid' alt = 'image of ".$summonerSpell -> id."' src = 'http://ddragon.leagueoflegends.com/cdn/8.24.1/img/spell/".$summonerSpell -> id.".png' width='40px' height='40px' data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($summonerSpell -> name,ENT_QUOTES)."</b><br>".htmlspecialchars($summonerSpell -> description,ENT_QUOTES)."'>";
+                                        }
+                                    }
+                                }
+                                echo '<div class="collapse" style="border-color:red;border-style:solid"></div>';
+                                echo '</td>';
+                                echo '</tr>';
+                            }
+                        }
+                    }
+                ?>
             </table>
         </div>
     </div>
@@ -111,8 +184,6 @@ require 'Class/Pro.php';
             <tr>
                 <?php
                 $mostPlayedChampions = $pro ->getMostPlayedChampions();
-                $championInfoJson = file_get_contents("http://ddragon.leagueoflegends.com/cdn/8.24.1/data/en_GB/championFull.json");
-                $championInfo = json_decode($championInfoJson);
                 foreach($mostPlayedChampions as $i => $mostPlayedChampion)
                 {
                     $mostPlayedChampionId = $mostPlayedChampion[0];

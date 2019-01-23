@@ -50,3 +50,33 @@
 {
     padding:0;
 }
+
+.textbutton
+{
+    background:none!important;
+    border:none;
+    padding:0!important;
+}
+
+.textbutton:hover
+{
+   cursor: pointer;
+}
+
+.img:hover
+{
+    cursor: crosshair;
+}
+
+#img2
+{
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+}
+
+.userSelect
+{
+    -moz-user-select: none;
+    user-select: none;
+}
