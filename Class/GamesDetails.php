@@ -39,7 +39,7 @@ class GamesDetails
                            FROM playergame p
                            LEFT JOIN game g
                            ON p.RiotGameId = g.RiotGameId
-                           WHERE RiotAccountId = "'.$this -> riotAccountId.'"
+                           WHERE RiotAccountId = "'.$this -> riotAccountId.'" AND Role = "'.$this->role.'"
                            ORDER BY `g`.`GameDate` DESC
                            LIMIT 0,10';
         
@@ -98,7 +98,7 @@ class GamesDetails
 
     function getTeams($riotGameId)
     {
-        $sql = 'SELECT RiotChampionId,Win,RiotAccountId 
+        $sql = 'SELECT RiotChampionId,Win,RiotAccountId,Kills,Deaths,Assists
                 FROM playergame 
                 WHERE RiotGameId = "'.$riotGameId.'"   
                 ORDER BY Win DESC,
@@ -121,6 +121,9 @@ class GamesDetails
                 $player[$i][0] = $row['RiotChampionId'];
                 $player[$i][1] = $row['Win'];
                 $player[$i][2] = $row['RiotAccountId'];
+                $player[$i][3] = $row['Kills'];
+                $player[$i][4] = $row['Deaths'];
+                $player[$i][5] = $row['Assists'];
                 $i++;
             }
             return $player;
@@ -184,22 +187,74 @@ class GamesDetails
             return $mainRunes;
 
         }
-        else exit("NO DATA");
+        else
+        {
+            $mainRunes[0] = 'NO DATA';
+            $mainRunes[1] = 'NO DATA';
+            return $mainRunes;
+        }
     }
 
     function getRunes($riotGameId,$riotAccountId)
     {
-        $sql = '';
+        $sql = 'SELECT Perk1,Perk2,Perk3,Perk4,Perk5,Perk6 FROM playerrunes WHERE RiotGameId = '.$riotGameId.' AND RiotAccountId = "'.$riotAccountId.'"';
+
+        $result = ($this -> conn) -> query($sql);
+        $runes = array();
+
+        if ($result -> num_rows > 0)
+        {
+            $row = $result -> fetch_assoc();
+            $runes[0] = $row['Perk1'];
+            $runes[1] = $row['Perk2'];
+            $runes[2] = $row['Perk3'];
+            $runes[3] = $row['Perk4'];
+            $runes[4] = $row['Perk5'];
+            $runes[5] = $row['Perk6'];
+            return $runes;
+        }
+        else exit ('NO DATA');
     }
 
     function getItems($riotGameId,$riotAccountId)
     {
-        $sql = '';
+        $sql = 'SELECT Item FROM playeritems WHERE RiotGameId = '.$riotGameId.' AND RiotAccountId = "'.$riotAccountId.'" ORDER BY Position';
+        $result = ($this -> conn) -> query($sql);
+
+        $items = array();
+
+        if($result -> num_rows > 0)
+        {
+            while($row = $result -> fetch_assoc())
+            {
+                $items[] = $row['Item'];
+            }
+            return $items;
+        }
+        else return $items[] = "NO DATA";
     }
 
     function getItemsHistory($riotGameId,$riotAccountId)
     {
-        $sql = '';
+        $sql = 'SELECT RiotItemId,Type,Seconds FROM playeritemshistory WHERE RiotGameId = '.$riotGameId.' AND RiotAccountId = "'.$riotAccountId.'" ORDER BY Seconds';
+
+        $result = ($this ->conn) -> query($sql);
+
+        $i=0;
+        $itemsHistory = array();
+
+        if($result -> num_rows > 0)
+        {
+            while($row = $result -> fetch_assoc())
+            {
+                $itemsHistory[$i][0] = $row['RiotItemId'];
+                $itemsHistory[$i][1] = $row['Type'];
+                $itemsHistory[$i][2] = $row['Seconds'];
+                $i++;
+            }
+            return $itemsHistory;
+        }
+        else exit("NO DATA");
     }
 
     function getChampion($riotGameId,$riotAccountId)
@@ -214,6 +269,44 @@ class GamesDetails
           $champion = $row['RiotChampionId'];
 
           return $champion;
+        }
+        else exit("NO DATA");
+    }
+
+    function getName($riotAccountId)
+    {
+        $sql = 'SELECT SummonerName FROM player WHERE RiotAccountId = "'.$riotAccountId.'"';
+
+        $result = ($this -> conn) -> query($sql);
+
+        if($result -> num_rows > 0)
+        {
+            $row = $result -> fetch_assoc();
+            $summonerName = $row['SummonerName'];
+
+            return $summonerName;
+        }
+        else exit("NO DATA");
+    }
+
+    function getSkillOrder($riotGameId,$riotAccountId)
+    {
+        $sql = 'SELECT Skillslot,AddTime FROM playerpoints WHERE RiotGameId = '.$riotGameId.' AND RiotAccountId = "'.$riotAccountId.'" ORDER BY AddTime';
+
+        $result = ($this -> conn) -> query($sql);
+
+        $i = 0;
+        $skillsPoint = array();
+
+        if($result -> num_rows > 0)
+        {
+            while($row = $result -> fetch_assoc())
+            {
+                $skillsPoint[$i][0] = $row['Skillslot'];
+                $skillsPoint[$i][1] = $row['AddTime'];
+                $i++;
+            }
+            return $skillsPoint;
         }
         else exit("NO DATA");
     }

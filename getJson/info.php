@@ -20,24 +20,31 @@ function checkRequestCounter($count)
     }
 }
 
+//League of Legends Key
 $key='api_key=RGAPI-a319d88e-821c-41d6-8409-7b24c779380e';
-$url = "https://eun1.api.riotgames.com";
+//URL FOR EUNE SERVER
+$host = "https://eun1.api.riotgames.com";
 
+//LEAGUES 3 HIGHEST RANKS IN LEAGUE OF LEGENDS
 $leagues = array();
 $leagues["challenger"] = "/lol/league/v4/challengerleagues/by-queue/RANKED_SOLO_5x5";
 $leagues["grandMaster"] = "/lol/league/v4/grandmasterleagues/by-queue/RANKED_SOLO_5x5";
 $leagues["master"] = "/lol/league/v4/masterleagues/by-queue/RANKED_SOLO_5x5";
 
+//QUESTION ABOUT SUMMONER
 $getSummonerAccountId = "/lol/summoner/v4/summoners/";
+//QUESTION ABOUT SUMMONER MATCH HISTORY (last 100 games)
 $getSummonerMatchHistory = "/lol/match/v4/matchlists/by-account/";
+//QUESTIONS FOR MATCH DETAILS
 $getDetailsById = "/lol/match/v4/matches/";
 $getTimelinesById = "/lol/match/v4/timelines/by-match/";
 
+//CODE OF RANKED QUEUE
 $soloRankedQueue = "?queue=420";
 
 foreach ($leagues as $league) {
     checkRequestCounter(1);
-    $getSummonerId = file_get_contents($url.$league."?".$key);
+    $getSummonerId = file_get_contents($host.$league."?".$key);
     $objSummonerId = json_decode($getSummonerId);
     $topPlayers = $objSummonerId -> entries;
 
@@ -46,13 +53,13 @@ foreach ($leagues as $league) {
 
         //GET INFO ABOUT ACCOUNT id,accountId,puuid,name,profileIconId,revisionDate,summonerLevel
         checkRequestCounter(1);
-        $getSummoner = file_get_contents($url . $getSummonerAccountId . $topPlayerSummonerId . "?" . $key);
+        $getSummoner = file_get_contents($host . $getSummonerAccountId . $topPlayerSummonerId . "?" . $key);
         $objSummoner = json_decode($getSummoner);
         $accountId = $objSummoner->accountId;
 
         //GET INFO ABOUT ACCOUNT MATCH HISTORY matches[0-99](platformId,gameId,champion,queue,season,timestamp,role,lane),totalGames
         checkRequestCounter(1);
-        $getSummonerHistory = file_get_contents($url . $getSummonerMatchHistory . $accountId .$soloRankedQueue. "&" . $key);
+        $getSummonerHistory = file_get_contents($host . $getSummonerMatchHistory . $accountId .$soloRankedQueue. "&" . $key);
         $objSummonerHistory = json_decode($getSummonerHistory);
         $matches = $objSummonerHistory->matches;
 
@@ -69,7 +76,7 @@ foreach ($leagues as $league) {
 
             //GET ACCOUNT MATCH DETAILS
             checkRequestCounter(1);
-            $getMatchDetails = file_get_contents($url . $getDetailsById . $gameId . "?" . $key);
+            $getMatchDetails = file_get_contents($host . $getDetailsById . $gameId . "?" . $key);
             $objMatchDetails = json_decode($getMatchDetails);
 
             $gameDuration = gmdate('i:s', $objMatchDetails->gameDuration);
@@ -80,7 +87,7 @@ foreach ($leagues as $league) {
 
             //GET ACCOUNT MATCH TIMELINES
             checkRequestCounter(1);
-            $getMatchTimelines = file_get_contents($url . $getTimelinesById . $gameId . "?" . $key);
+            $getMatchTimelines = file_get_contents($host . $getTimelinesById . $gameId . "?" . $key);
             $objMatchTimelines = json_decode($getMatchTimelines);
 
             $participants = $objMatchDetails->participants;
@@ -116,14 +123,16 @@ foreach ($leagues as $league) {
                 {
                   $items = "item".$position;
                   $item = $participant -> stats -> $items;
-                  $fromItem = $itemInfo -> data -> $item -> from;
-                  $intoItem = $itemInfo -> data -> $item -> into;
+                  $depthItem = $itemInfo -> data -> $item -> depth;
 
-                  if($fromItem  && !$intoItem)
+                  if($depthItem)
                   {
-                      if($item != 0)
+                      if($depthItem > 2)
                       {
-                          $playerItems -> execute();
+                          if($item != 0)
+                          {
+                              $playerItems -> execute();
+                          }
                       }
                   }
                 }

@@ -80,3 +80,13 @@
     -moz-user-select: none;
     user-select: none;
 }
+
+.numbers
+{
+    font-family: 'Oswald', sans-serif;
+}
+
+.centerMargin
+{
+    margin-left:20%;
+}
