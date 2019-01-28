@@ -38,18 +38,18 @@ require 'Class/GamesDetails.php';
     $gamesDetails = new GamesDetails($riotAccountId,$setRole);
     $matchesHistory = $gamesDetails -> getMatchHistory();
 
-    $summonerInfoJson = file_get_contents("http://ddragon.leagueoflegends.com/cdn/8.24.1/data/en_GB/summoner.json");
+    $summonerInfoJson = file_get_contents("http://ddragon.leagueoflegends.com/cdn/9.2.1/data/en_GB/summoner.json");
     $summonerInfo = json_decode($summonerInfoJson);
     $summonerSpells = $summonerInfo -> data;
 
-    $runesInfoJson = file_get_contents("http://ddragon.leagueoflegends.com/cdn/8.24.1/data/en_GB/runesReforged.json");
+    $runesInfoJson = file_get_contents("http://ddragon.leagueoflegends.com/cdn/9.2.1/data/en_GB/runesReforged.json");
     $runesInfo = json_decode($runesInfoJson);
 
-    $itemsInfoJson = file_get_contents("http://ddragon.leagueoflegends.com/cdn/8.24.1/data/en_GB/item.json");
+    $itemsInfoJson = file_get_contents("http://ddragon.leagueoflegends.com/cdn/9.2.1/data/en_GB/item.json");
     $itemsInfo = json_decode($itemsInfoJson);
     $itemsDetails = $itemsInfo -> data;
 
-    $championInfoJson = file_get_contents("http://ddragon.leagueoflegends.com/cdn/8.24.1/data/en_GB/championFull.json");
+    $championInfoJson = file_get_contents("http://ddragon.leagueoflegends.com/cdn/9.2.1/data/en_GB/championFull.json");
     $championInfo = json_decode($championInfoJson);
     ?>
     <!-- NAME OF PRO PLAYER-->
@@ -102,7 +102,7 @@ require 'Class/GamesDetails.php';
                     $mostPlayedChampionName = $championInfo -> keys -> $mostPlayedChampionId;
                     $mostPlayedChampionTitle = $championInfo -> data -> $mostPlayedChampionName -> title;
                     echo "<th align='center' style='text-align: center;'   data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($mostPlayedChampionName,ENT_QUOTES)."</b><br>".htmlspecialchars($mostPlayedChampionTitle,ENT_QUOTES)."'>";
-                    echo "<img class='img-fluid' alt = 'image of ".$mostPlayedChampionName."' src = 'http://ddragon.leagueoflegends.com/cdn/8.24.1/img/champion/".$mostPlayedChampionName.".png' width=60px height=60px>";
+                    echo "<img class='img-fluid' alt = 'image of ".$mostPlayedChampionName."' src = 'http://ddragon.leagueoflegends.com/cdn/9.2.1/img/champion/".$mostPlayedChampionName.".png' width=60px height=60px>";
                     echo "</th>";
 
                     if ($i == 4) break;
@@ -162,7 +162,7 @@ require 'Class/GamesDetails.php';
                                     if($riotAccountId === $players[$j][2]) echo "border-info";
                                     else if($players[$j][1] == 1) echo "border-success";
                                     else echo "border-danger";
-                                    echo "' alt = 'image of ".$championName."' src = 'http://ddragon.leagueoflegends.com/cdn/8.24.1/img/champion/".$championName.".png' width=60px height=60px data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($championName,ENT_QUOTES)."</b><br>".htmlspecialchars($championTitle,ENT_QUOTES)."' ></td>";
+                                    echo "' alt = 'image of ".$championName."' src = 'http://ddragon.leagueoflegends.com/cdn/9.2.1/img/champion/".$championName.".png' width=60px height=60px data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($championName,ENT_QUOTES)."</b><br>".htmlspecialchars($championTitle,ENT_QUOTES)."' ></td>";
                                 }
                                 echo '</tr>';
                                 echo '<tr>';
@@ -178,7 +178,7 @@ require 'Class/GamesDetails.php';
                                     if($riotAccountId === $players[$j][2]) echo "border-info";
                                     else if($players[$j][1] == 1) echo "border-success";
                                     else echo "border-danger";
-                                    echo "' alt = 'image of ".$championName."' src = 'http://ddragon.leagueoflegends.com/cdn/8.24.1/img/champion/".$championName.".png' width=60px height=60px data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($championName,ENT_QUOTES)."</b><br>".htmlspecialchars($championTitle,ENT_QUOTES)."' ></td>";
+                                    echo "' alt = 'image of ".$championName."' src = 'http://ddragon.leagueoflegends.com/cdn/9.2.1/img/champion/".$championName.".png' width=60px height=60px data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($championName,ENT_QUOTES)."</b><br>".htmlspecialchars($championTitle,ENT_QUOTES)."' ></td>";
                                 }
                                 echo '</tr>';
                                 echo '<tr>';
@@ -210,7 +210,7 @@ require 'Class/GamesDetails.php';
                                 if($riotAccountId === $gameId) echo "border-info";
                                 else if($i <= 5) echo "border-success";
                                 else echo "border-danger";
-                                echo "' alt = 'image of ".$championName."' src = 'http://ddragon.leagueoflegends.com/cdn/8.24.1/img/champion/".$championName.".png' width=60px height=60px data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($championName,ENT_QUOTES)."</b><br>".htmlspecialchars($championTitle,ENT_QUOTES)."' >";
+                                echo "' alt = 'image of ".$championName."' src = 'http://ddragon.leagueoflegends.com/cdn/9.2.1/img/champion/".$championName.".png' width=60px height=60px data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($championName,ENT_QUOTES)."</b><br>".htmlspecialchars($championTitle,ENT_QUOTES)."' >";
 
                                 $mainRuneName = array();
                                 $mainRuneImg = array();
@@ -238,7 +238,7 @@ require 'Class/GamesDetails.php';
                                         {
                                             echo "<img class='img-fluid ";
                                             if ($j == 1) echo "mr-3";
-                                            echo "' alt = 'image of ".$summonerSpell -> id."' src = 'http://ddragon.leagueoflegends.com/cdn/8.24.1/img/spell/".$summonerSpell -> id.".png' width='40px' height='40px' data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($summonerSpell -> name,ENT_QUOTES)."</b><br>".htmlspecialchars($summonerSpell -> description,ENT_QUOTES)."'>";
+                                            echo "' alt = 'image of ".$summonerSpell -> id."' src = 'http://ddragon.leagueoflegends.com/cdn/9.2.1/img/spell/".$summonerSpell -> id.".png' width='40px' height='40px' data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($summonerSpell -> name,ENT_QUOTES)."</b><br>".htmlspecialchars($summonerSpell -> description,ENT_QUOTES)."'>";
                                         }
                                     }
                                 }
@@ -247,7 +247,7 @@ require 'Class/GamesDetails.php';
                                 {
                                     $itemName = $itemsDetails -> $item -> name;
                                     $itemDescription = $itemsDetails -> $item -> description;
-                                    echo "<img class='img-fluid mr-1' alt = 'image of ".$itemName."' src = 'http://ddragon.leagueoflegends.com/cdn/8.24.1/img/item/".$item.".png' width='40px' height='40px' data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($itemName,ENT_QUOTES)."</b><br>".htmlspecialchars($itemDescription,ENT_QUOTES)."'>";
+                                    echo "<img class='img-fluid mr-1' alt = 'image of ".$itemName."' src = 'http://ddragon.leagueoflegends.com/cdn/9.2.1/img/item/".$item.".png' width='40px' height='40px' data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($itemName,ENT_QUOTES)."</b><br>".htmlspecialchars($itemDescription,ENT_QUOTES)."'>";
                                 }
 
                                 echo '<div class="collapse pt-5">';
@@ -316,7 +316,7 @@ require 'Class/GamesDetails.php';
 
                                 echo '<tr>';
                                 echo '<td class="text-center" style="width:'.(count($skillPoints)/100).'%">';
-                                echo "<img class='img-fluid mr-1' alt = 'image of ".$skillsName[0][0]."' src = 'http://ddragon.leagueoflegends.com/cdn/8.24.1/img/spell/".$skillsName[0][1]."' width='40px' height='40px' data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($skillsName[0][0], ENT_QUOTES) . "</b>'>";
+                                echo "<img class='img-fluid mr-1' alt = 'image of ".$skillsName[0][0]."' src = 'http://ddragon.leagueoflegends.com/cdn/9.2.1/img/spell/".$skillsName[0][1]."' width='40px' height='40px' data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($skillsName[0][0], ENT_QUOTES) . "</b>'>";
                                 echo '</td>';
                                 foreach($skillPoints as $j =>$skillPoint)
                                 {
@@ -329,7 +329,7 @@ require 'Class/GamesDetails.php';
 
                                 echo '<tr>';
                                 echo '<td class="text-center" style="width:'.(count($skillPoints)/100).'%">';
-                                echo "<img class='img-fluid mr-1' alt = 'image of ".$skillsName[1][0]."' src = 'http://ddragon.leagueoflegends.com/cdn/8.24.1/img/spell/".$skillsName[1][1]."' width='40px' height='40px' data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($skillsName[1][0], ENT_QUOTES) . "</b>'>";
+                                echo "<img class='img-fluid mr-1' alt = 'image of ".$skillsName[1][0]."' src = 'http://ddragon.leagueoflegends.com/cdn/9.2.1/img/spell/".$skillsName[1][1]."' width='40px' height='40px' data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($skillsName[1][0], ENT_QUOTES) . "</b>'>";
                                 echo '</td>';
 
                                 foreach($skillPoints as $j =>$skillPoint)
@@ -342,7 +342,7 @@ require 'Class/GamesDetails.php';
                                 echo '</tr>';
                                 echo '<tr>';
                                 echo '<td class="text-center" style="width:'.(count($skillPoints)/100).'%">';
-                                echo "<img class='img-fluid mr-1' alt = 'image of ".$skillsName[2][0]."' src = 'http://ddragon.leagueoflegends.com/cdn/8.24.1/img/spell/".$skillsName[2][1]."' width='40px' height='40px' data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($skillsName[2][0], ENT_QUOTES) . "</b>'>";
+                                echo "<img class='img-fluid mr-1' alt = 'image of ".$skillsName[2][0]."' src = 'http://ddragon.leagueoflegends.com/cdn/9.2.1/img/spell/".$skillsName[2][1]."' width='40px' height='40px' data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($skillsName[2][0], ENT_QUOTES) . "</b>'>";
                                 echo '</td>';
                                 foreach($skillPoints as $j =>$skillPoint)
                                 {
@@ -354,7 +354,7 @@ require 'Class/GamesDetails.php';
                                 echo '</tr>';
                                 echo '<tr>';
                                 echo '<td class="text-center" style="width:'.(count($skillPoints)/100).'%">';
-                                echo "<img class='img-fluid mr-1' alt = 'image of ".$skillsName[3][0]."' src = 'http://ddragon.leagueoflegends.com/cdn/8.24.1/img/spell/".$skillsName[3][1]."' width='40px' height='40px' data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($skillsName[3][0], ENT_QUOTES) . "</b>'>";
+                                echo "<img class='img-fluid mr-1' alt = 'image of ".$skillsName[3][0]."' src = 'http://ddragon.leagueoflegends.com/cdn/9.2.1/img/spell/".$skillsName[3][1]."' width='40px' height='40px' data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($skillsName[3][0], ENT_QUOTES) . "</b>'>";
                                 echo '</td>';
                                 foreach($skillPoints as $j =>$skillPoint)
                                 {
@@ -379,7 +379,7 @@ require 'Class/GamesDetails.php';
                                         $itemId = $itemHistory[0];
                                         $itemName = $itemsDetails -> $itemId -> name;
                                         $itemDescription = $itemsDetails -> $itemId -> description;
-                                        echo "<img class='img-fluid mr-1' alt = 'image of ".$itemName."' src = 'http://ddragon.leagueoflegends.com/cdn/8.24.1/img/item/".$itemId.".png' width='40px' height='40px' data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($itemName,ENT_QUOTES)."</b><br>".htmlspecialchars($itemDescription,ENT_QUOTES)."'>";
+                                        echo "<img class='img-fluid mr-1' alt = 'image of ".$itemName."' src = 'http://ddragon.leagueoflegends.com/cdn/9.2.1/img/item/".$itemId.".png' width='40px' height='40px' data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($itemName,ENT_QUOTES)."</b><br>".htmlspecialchars($itemDescription,ENT_QUOTES)."'>";
 
                                     }
                                     else if ($itemHistory[2] - $itemsHistory[$j-1][2] > 30000)
@@ -389,7 +389,7 @@ require 'Class/GamesDetails.php';
                                         $itemId = $itemHistory[0];
                                         $itemName = $itemsDetails -> $itemId -> name;
                                         $itemDescription = $itemsDetails -> $itemId -> description;
-                                        echo "<img class='img-fluid mr-1' alt = 'image of ".$itemName."' src = 'http://ddragon.leagueoflegends.com/cdn/8.24.1/img/item/".$itemId.".png' width='40px' height='40px' data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($itemName,ENT_QUOTES)."</b><br>".htmlspecialchars($itemDescription,ENT_QUOTES)."'>";
+                                        echo "<img class='img-fluid mr-1' alt = 'image of ".$itemName."' src = 'http://ddragon.leagueoflegends.com/cdn/9.2.1/img/item/".$itemId.".png' width='40px' height='40px' data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($itemName,ENT_QUOTES)."</b><br>".htmlspecialchars($itemDescription,ENT_QUOTES)."'>";
                                     }
                                     else
                                     {
@@ -397,7 +397,7 @@ require 'Class/GamesDetails.php';
                                         $itemId = $itemHistory[0];
                                         $itemName = $itemsDetails -> $itemId -> name;
                                         $itemDescription = $itemsDetails -> $itemId -> description;
-                                        echo "<img class='img-fluid mr-1' alt = 'image of ".$itemName."' src = 'http://ddragon.leagueoflegends.com/cdn/8.24.1/img/item/".$itemId.".png' width='40px' height='40px' data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($itemName,ENT_QUOTES)."</b><br>".htmlspecialchars($itemDescription,ENT_QUOTES)."'>";
+                                        echo "<img class='img-fluid mr-1' alt = 'image of ".$itemName."' src = 'http://ddragon.leagueoflegends.com/cdn/9.2.1/img/item/".$itemId.".png' width='40px' height='40px' data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($itemName,ENT_QUOTES)."</b><br>".htmlspecialchars($itemDescription,ENT_QUOTES)."'>";
                                     }
                                 }
                                 echo '</div>';

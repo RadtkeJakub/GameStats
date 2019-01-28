@@ -28,10 +28,10 @@ class All
             die("Connection failed: ". ($this->conn)->connect_error);
         }
 
-        $getJson = file_get_contents("http://ddragon.leagueoflegends.com/cdn/8.24.1/data/en_GB/championFull.json");
+        $getJson = file_get_contents("http://ddragon.leagueoflegends.com/cdn/9.2.1/data/en_GB/championFull.json");
         $this -> championInfo = json_decode($getJson);
 
-        $getItemJson = file_get_contents("http://ddragon.leagueoflegends.com/cdn/8.24.1/data/en_GB/item.json");
+        $getItemJson = file_get_contents("http://ddragon.leagueoflegends.com/cdn/9.2.1/data/en_GB/item.json");
         $this -> itemInfo = json_decode($getItemJson);
 
         $this -> role = $role;
@@ -149,7 +149,7 @@ class All
                                       ,ROUND(100*SUM(CASE WHEN Win = 1 THEN 1 ELSE 0 END)/COUNT(RiotAccountId)) as Winrate
                                 FROM playergame
                                 GROUP BY Role,RiotAccountId
-                          		HAVING Total > 5) g GROUP BY g.RiotAccountId  ) tab2
+                          		HAVING Total > 2) g GROUP BY g.RiotAccountId  ) tab2
                 ON tab1.RiotAccountId = tab2.RiotAccountId
                 WHERE tab2.Role IS NOT NULL
                 GROUP BY tab1.RiotAccountId  

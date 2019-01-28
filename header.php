@@ -15,6 +15,8 @@
         define("MID","MIDDLE");
         define("BOT","BOTTOM");
         define("SUPP","SUPPORT");
+//        error_reporting(0);
+//        ini_set('display_errors', 0);
     ?>
 </head>
 

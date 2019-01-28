@@ -1,8 +1,6 @@
 <?php
     require 'header.php';
     require 'Class/All.php';
-//    error_reporting(0);
-//    ini_set('display_errors', 0);
 ?>
 
 <div class="row darkBackground staatFont">
@@ -18,7 +16,7 @@
             </form>
         </div>
     </div>
-    <div class="col-md-4 d-none d-md-block mt-5">
+    <div class="col-md-4 mt-5">
         Champions
         <table class="table table-borderless table-sm">
             <thead>
@@ -29,7 +27,7 @@
                     for($i=0;$i<5;$i++)
                     {
                       echo "<th data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($champions[$i][1],ENT_QUOTES)."</b><br>".htmlspecialchars($champions[$i][4],ENT_QUOTES)   ."'>";
-                      echo "<img class='img-fluid' alt = 'image of ".$champions[$i][1]."' src = 'http://ddragon.leagueoflegends.com/cdn/8.24.1/img/champion/".$champions[$i][1].".png' width=60px height=60px>";
+                      echo "<img class='img-fluid' alt = 'image of ".$champions[$i][1]."' src = 'http://ddragon.leagueoflegends.com/cdn/9.2.1/img/champion/".$champions[$i][1].".png' width=60px height=60px>";
                       echo "</th>";
                     }
                 ?>
@@ -56,7 +54,7 @@
                     for($i=5;$i<10;$i++)
                     {
                         echo "<td data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($champions[$i][1],ENT_QUOTES)."</b><br>".htmlspecialchars($champions[$i][4],ENT_QUOTES)."'>";
-                        echo "<img class='img-fluid' alt = 'image of ".$champions[$i][1]."' src = 'http://ddragon.leagueoflegends.com/cdn/8.24.1/img/champion/".$champions[$i][1].".png' width=60px height=60px>";
+                        echo "<img class='img-fluid' alt = 'image of ".$champions[$i][1]."' src = 'http://ddragon.leagueoflegends.com/cdn/9.2.1/img/champion/".$champions[$i][1].".png' width=60px height=60px>";
                         echo "</td>";
                     }
                     ?>
@@ -85,7 +83,7 @@
                 for($i=0;$i<5;$i++)
                 {
                     echo "<th data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($items[$i][3],ENT_QUOTES)."</b><br><br>".htmlspecialchars($items[$i][4],ENT_QUOTES)."'>";
-                    echo "<img class = 'img-fluid' alt = 'image of ".$items[$i][0]."' src = 'http://ddragon.leagueoflegends.com/cdn/8.24.1/img/item/".$items[$i][0].".png'>";
+                    echo "<img class = 'img-fluid' alt = 'image of ".$items[$i][0]."' src = 'http://ddragon.leagueoflegends.com/cdn/9.2.1/img/item/".$items[$i][0].".png'>";
                     echo "</th>";
                 }
                 ?>
@@ -111,7 +109,7 @@
                 for($i=5;$i<10;$i++)
                 {
                     echo "<td data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($items[$i][3],ENT_QUOTES)."</b><br><br>".htmlspecialchars($items[$i][4],ENT_QUOTES)."'>";
-                    echo "<img class = 'img-fluid' alt = 'image of ".$items[$i][0]."' src = 'http://ddragon.leagueoflegends.com/cdn/8.24.1/img/item/".$items[$i][0].".png'>";
+                    echo "<img class = 'img-fluid' alt = 'image of ".$items[$i][0]."' src = 'http://ddragon.leagueoflegends.com/cdn/9.2.1/img/item/".$items[$i][0].".png'>";
                     echo "</td>";
                 }
                 ?>

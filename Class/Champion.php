@@ -29,10 +29,10 @@ class Champion
             die("Connection failed: ". ($this->conn)->connect_error);
         }
 
-        $getJson = file_get_contents("http://ddragon.leagueoflegends.com/cdn/8.24.1/data/en_GB/championFull.json");
+        $getJson = file_get_contents("http://ddragon.leagueoflegends.com/cdn/9.2.1/data/en_GB/championFull.json");
         $this -> championInfo = json_decode($getJson);
 
-        $getItemJson = file_get_contents("http://ddragon.leagueoflegends.com/cdn/8.24.1/data/en_GB/item.json");
+        $getItemJson = file_get_contents("http://ddragon.leagueoflegends.com/cdn/9.2.1/data/en_GB/item.json");
         $this -> itemInfo = json_decode($getItemJson);
 
         $this -> championId = $championId;

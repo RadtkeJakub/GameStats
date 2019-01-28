@@ -28,10 +28,6 @@
     $playerPoints = $conn -> prepare("INSERT INTO playerpoints(RiotAccountId, RiotGameId, SkillSlot, Type, AddTime) VALUES (?, ?, ?, ?, ?)");
     $playerPoints -> bind_param("siisi", $accountId,$gameId,$skillSlot,$type,$addPointTime);
 
-    //PREPARE PLAYER POSITION
-    $playerPosition = $conn -> prepare("INSERT INTO playerposition(RiotAccountId, RiotGameId, X, Y, Minute) VALUES (?, ?, ?, ?, ?)");
-    $playerPosition -> bind_param("siiii",$accountId,$gameId,$x,$y,$minute);
-
     //PREPARE PLAYER RUNES
     $playerRunes = $conn -> prepare("INSERT INTO playerrunes(RiotAccountId,RiotGameId,MainPerk,SubPerk,Perk1,Perk2,Perk3,Perk4,Perk5,Perk6) VALUES(?,?,?,?,?,?,?,?,?,?)");
     $playerRunes -> bind_param("siiiiiiiii",$accountId,$gameId,$mainPerk,$subPerk,$Perk1,$Perk2,$Perk3,$Perk4,$Perk5,$Perk6);

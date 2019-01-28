@@ -43,24 +43,28 @@ $getTimelinesById = "/lol/match/v4/timelines/by-match/";
 $soloRankedQueue = "?queue=420";
 
 foreach ($leagues as $league) {
-    checkRequestCounter(1);
+
     $getSummonerId = file_get_contents($host.$league."?".$key);
     $objSummonerId = json_decode($getSummonerId);
+    checkRequestCounter(1);
+
     $topPlayers = $objSummonerId -> entries;
 
     foreach($topPlayers as $topPlayer) {
         $topPlayerSummonerId = $topPlayer -> summonerId;
 
         //GET INFO ABOUT ACCOUNT id,accountId,puuid,name,profileIconId,revisionDate,summonerLevel
-        checkRequestCounter(1);
         $getSummoner = file_get_contents($host . $getSummonerAccountId . $topPlayerSummonerId . "?" . $key);
         $objSummoner = json_decode($getSummoner);
+        checkRequestCounter(1);
+
         $accountId = $objSummoner->accountId;
 
         //GET INFO ABOUT ACCOUNT MATCH HISTORY matches[0-99](platformId,gameId,champion,queue,season,timestamp,role,lane),totalGames
-        checkRequestCounter(1);
         $getSummonerHistory = file_get_contents($host . $getSummonerMatchHistory . $accountId .$soloRankedQueue. "&" . $key);
         $objSummonerHistory = json_decode($getSummonerHistory);
+        checkRequestCounter(1);
+
         $matches = $objSummonerHistory->matches;
 
         foreach ($matches as $match) {
@@ -75,9 +79,9 @@ foreach ($leagues as $league) {
             $matchDate = date('Y-m-d H:i:s', ($match->timestamp) / 1000);
 
             //GET ACCOUNT MATCH DETAILS
-            checkRequestCounter(1);
             $getMatchDetails = file_get_contents($host . $getDetailsById . $gameId . "?" . $key);
             $objMatchDetails = json_decode($getMatchDetails);
+            checkRequestCounter(1);
 
             $gameDuration = gmdate('i:s', $objMatchDetails->gameDuration);
             $patch = $objMatchDetails->gameVersion;
@@ -86,35 +90,18 @@ foreach ($leagues as $league) {
             $game->execute();
 
             //GET ACCOUNT MATCH TIMELINES
-            checkRequestCounter(1);
             $getMatchTimelines = file_get_contents($host . $getTimelinesById . $gameId . "?" . $key);
             $objMatchTimelines = json_decode($getMatchTimelines);
+            checkRequestCounter(1);
 
             $participants = $objMatchDetails->participants;
             $frames = $objMatchTimelines->frames;
 
             foreach ($participants as $i => $participant) {
-                $role = $participant->timeline->role;
-                $lane = $participant->timeline->lane;
-
-                if ($role == "DUO_SUPPORT")
-                {
-                    $role = "SUPPORT";
-                }
-                else
-                {
-                    $role = $lane;
-                }
 
                 $accountId = $objMatchDetails->participantIdentities[$i]->player->accountId;
                 $summonerName = $objMatchDetails->participantIdentities[$i]->player->summonerName;
                 $summoner->execute();
-
-                if ($participant->teamId == 100) $team = "blue";
-                else $team = "red";
-
-                if ($participant->stats->win == "Win") $win = 1;
-                else $win = 0;
 
                 $itemInfoJson = file_get_contents("http://ddragon.leagueoflegends.com/cdn/8.24.1/data/en_GB/item.json");
                 $itemInfo = json_decode($itemInfoJson);
@@ -127,7 +114,7 @@ foreach ($leagues as $league) {
 
                   if($depthItem)
                   {
-                      if($depthItem > 2)
+                      if($depthItem > 1)
                       {
                           if($item != 0)
                           {
@@ -153,6 +140,24 @@ foreach ($leagues as $league) {
 
                 $spell = $participant -> spell2Id;
                 $playerSpells -> execute();
+
+                $role = $participant->timeline->role;
+                $lane = $participant->timeline->lane;
+
+                if ($role == "DUO_SUPPORT")
+                {
+                    $role = "SUPPORT";
+                }
+                else
+                {
+                    $role = $lane;
+                }
+
+                if ($participant->teamId == 100) $team = "blue";
+                else $team = "red";
+
+                if ($participant->stats->win == "Win") $win = 1;
+                else $win = 0;
 
                 $kill = $participant->stats->kills;
                 $death = $participant->stats->deaths;
@@ -185,22 +190,10 @@ foreach ($leagues as $league) {
                             $playerPoints->execute();
                         }
                     }
-
                     if ($j == count($frames) - 1) continue;
                     $participantFrame = $frame->participantFrames->$participantId;
-
-
-                    $x = $participantFrame->position->x;
-                    $y = $participantFrame->position->y;
-                    $minute = $frame->timestamp / 60000;
-                    $minute = floor($minute);
-
-                    $playerPosition->execute();
                 }
-
-
             }
-
         }
     }
 }

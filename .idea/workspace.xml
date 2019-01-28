@@ -6,10 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="b7a9b000-2c38-496f-a74c-f50bc352d987" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Class/GamesDetails.php" beforeDir="false" afterPath="$PROJECT_DIR$/Class/GamesDetails.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Class/All.php" beforeDir="false" afterPath="$PROJECT_DIR$/Class/All.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Class/Champion.php" beforeDir="false" afterPath="$PROJECT_DIR$/Class/Champion.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/champion.php" beforeDir="false" afterPath="$PROJECT_DIR$/champion.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/champions.php" beforeDir="false" afterPath="$PROJECT_DIR$/champions.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/getJson/info.php" beforeDir="false" afterPath="$PROJECT_DIR$/getJson/info.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/getJson/sql.php" beforeDir="false" afterPath="$PROJECT_DIR$/getJson/sql.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lolstyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/lolstyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pro.php" beforeDir="false" afterPath="$PROJECT_DIR$/pro.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,17 +27,40 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pro.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5389">
-              <caret line="317" column="106" selection-start-line="317" selection-start-column="62" selection-end-line="317" selection-end-column="106" />
+            <state relative-caret-position="6783">
+              <caret line="399" column="156" selection-start-line="399" selection-start-column="156" selection-end-line="399" selection-end-column="156" />
+              <folding>
+                <element signature="n#style#0;n#th#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/getJson/info.php">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="55" column="8" selection-start-line="55" selection-start-column="8" selection-end-line="56" selection-end-column="49" />
+            <state relative-caret-position="1665">
+              <caret line="111" column="137" selection-start-line="111" selection-start-column="137" selection-end-line="111" selection-end-column="137" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/champions.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1445">
+              <caret line="85" column="121" selection-start-line="85" selection-start-column="121" selection-end-line="85" selection-end-column="121" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/header.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="17" column="10" selection-start-line="17" selection-start-column="10" selection-end-line="18" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -41,8 +68,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pros.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1615">
-              <caret line="95" column="85" selection-start-line="95" selection-start-column="85" selection-end-line="95" selection-end-column="85" />
+            <state relative-caret-position="221">
+              <caret line="13" column="40" lean-forward="true" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -50,8 +77,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Class/GamesDetails.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="41" column="104" selection-start-line="41" selection-start-column="104" selection-end-line="41" selection-end-column="104" />
+            <state relative-caret-position="68">
+              <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -59,17 +86,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/champion.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2295">
-              <caret line="135" column="20" selection-start-line="135" selection-start-column="20" selection-end-line="161" selection-end-column="25" />
+            <state relative-caret-position="2668">
+              <caret line="393" column="131" selection-start-line="393" selection-start-column="131" selection-end-line="393" selection-end-column="131" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Class/Champion.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2224">
+              <caret line="34" column="86" selection-start-line="34" selection-start-column="86" selection-end-line="34" selection-end-column="86" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Class/Champion.php">
+        <entry file="file://$PROJECT_DIR$/Class/All.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+            <state relative-caret-position="322">
+              <caret line="33" column="86" selection-start-line="33" selection-start-column="86" selection-end-line="33" selection-end-column="86" />
             </state>
           </provider>
         </entry>
@@ -77,7 +113,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lolstyle.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1547">
+            <state relative-caret-position="841">
               <caret line="91" column="1" selection-start-line="91" selection-start-column="1" selection-end-line="91" selection-end-column="1" />
             </state>
           </provider>
@@ -87,8 +123,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>playeritems</find>
-      <find>type</find>
       <find>$runes</find>
       <find>$spells</find>
       <find>team</find>
@@ -117,6 +151,8 @@
       <find>center</find>
       <find>runes</find>
       <find>$url</find>
+      <find>8.24.1</find>
+      <find>9.1.1</find>
     </findStrings>
     <replaceStrings>
       <replace>getSummonerAccountId</replace>
@@ -141,6 +177,8 @@
       <replace>riotAccountId</replace>
       <replace />
       <replace>$host</replace>
+      <replace>9.2.1</replace>
+      <replace>9.1.1</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -159,7 +197,6 @@
         <option value="$PROJECT_DIR$/getJson/getInfo.php" />
         <option value="$PROJECT_DIR$/getJson/test.php" />
         <option value="$PROJECT_DIR$/mainSql.php" />
-        <option value="$PROJECT_DIR$/getJson/sql.php" />
         <option value="$PROJECT_DIR$/Champions.php" />
         <option value="$PROJECT_DIR$/getJson.php" />
         <option value="$PROJECT_DIR$/list.xml" />
@@ -171,26 +208,27 @@
         <option value="$PROJECT_DIR$/All.php" />
         <option value="$PROJECT_DIR$/Class/Pros.php" />
         <option value="$PROJECT_DIR$/pros.php" />
-        <option value="$PROJECT_DIR$/Class/Champion.php" />
         <option value="$PROJECT_DIR$/Class/Games.php" />
         <option value="$PROJECT_DIR$/Class/Pro.php" />
-        <option value="$PROJECT_DIR$/champion.php" />
-        <option value="$PROJECT_DIR$/Class/All.php" />
-        <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/footer.php" />
-        <option value="$PROJECT_DIR$/champions.php" />
-        <option value="$PROJECT_DIR$/header.php" />
         <option value="$PROJECT_DIR$/Class/GamesDetails.php" />
         <option value="$PROJECT_DIR$/lolstyle.css" />
-        <option value="$PROJECT_DIR$/pro.php" />
+        <option value="$PROJECT_DIR$/getJson/sql.php" />
         <option value="$PROJECT_DIR$/getJson/info.php" />
+        <option value="$PROJECT_DIR$/champion.php" />
+        <option value="$PROJECT_DIR$/Class/Champion.php" />
+        <option value="$PROJECT_DIR$/Class/All.php" />
+        <option value="$PROJECT_DIR$/champions.php" />
+        <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/pro.php" />
+        <option value="$PROJECT_DIR$/header.php" />
       </list>
     </option>
   </component>
   <component name="PhpServers">
     <servers />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-7" />
     <option name="width" value="974" />
     <option name="height" value="1047" />
@@ -200,6 +238,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -221,7 +260,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -313,6 +351,9 @@
       <workItem from="1548421317040" duration="3480000" />
       <workItem from="1548434903943" duration="641000" />
       <workItem from="1548444922098" duration="1792000" />
+      <workItem from="1548506881251" duration="5770000" />
+      <workItem from="1548590397774" duration="11448000" />
+      <workItem from="1548693578246" duration="4492000" />
     </task>
     <task id="LOCAL-00001" summary="Tabela itp">
       <created>1546255941244</created>
@@ -325,7 +366,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="510412000" />
+    <option name="totallyTimeSpent" value="532122000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -337,9 +378,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49945828" visible="true" weight="0.116204694" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49945828" visible="true" weight="0.11940298" />
       <window_info id="Structure" order="1" sideWeight="0.5005417" side_tool="true" weight="0.13646056" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -400,13 +442,6 @@
     <entry file="file://$USER_HOME$/AppData/Local/Temp/index-1.txt" />
     <entry file="file://$PROJECT_DIR$/getJson.php" />
     <entry file="file://$PROJECT_DIR$/list.xml" />
-    <entry file="file://$PROJECT_DIR$/links.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/livesearch.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -414,24 +449,10 @@
     <entry file="file://$PROJECT_DIR$/test.php" />
     <entry file="file://$PROJECT_DIR$/Class/Games.php" />
     <entry file="file://$PROJECT_DIR$/mainSql.php" />
-    <entry file="file://$PROJECT_DIR$/Class/All.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="841">
-          <caret line="156" selection-start-line="156" selection-end-line="156" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/footer.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="799">
           <caret line="47" column="24" selection-start-line="47" selection-start-column="24" selection-end-line="47" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1003">
-          <caret line="113" column="93" selection-start-line="113" selection-start-column="93" selection-end-line="113" selection-end-column="169" />
         </state>
       </provider>
     </entry>
@@ -442,76 +463,102 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/header.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="81" selection-start-line="8" selection-start-column="81" selection-end-line="8" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/champions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="841">
-          <caret line="85" column="127" selection-start-line="85" selection-start-column="127" selection-end-line="85" selection-end-column="136" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/getJson/getInfo.php" />
     <entry file="file://$PROJECT_DIR$/getJson/redwe.php" />
     <entry file="file://$PROJECT_DIR$/getJson/test.php" />
     <entry file="file://$PROJECT_DIR$/getJson/sql.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="35" lean-forward="true" selection-start-line="27" selection-start-column="35" selection-end-line="27" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pro.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5389">
-          <caret line="317" column="106" selection-start-line="317" selection-start-column="62" selection-end-line="317" selection-end-column="106" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pros.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1615">
-          <caret line="95" column="85" selection-start-line="95" selection-start-column="85" selection-end-line="95" selection-end-column="85" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Class/GamesDetails.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="41" column="104" selection-start-line="41" selection-start-column="104" selection-end-line="41" selection-end-column="104" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/champion.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2295">
-          <caret line="135" column="20" selection-start-line="135" selection-start-column="20" selection-end-line="161" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Class/Champion.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lolstyle.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1547">
-          <caret line="91" column="1" selection-start-line="91" selection-start-column="1" selection-end-line="91" selection-end-column="1" />
+        <state relative-caret-position="493">
+          <caret line="29" selection-start-line="29" selection-end-line="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/getJson/info.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="55" column="8" selection-start-line="55" selection-start-column="8" selection-end-line="56" selection-end-column="49" />
+        <state relative-caret-position="1683">
+          <caret line="99" column="58" selection-start-line="99" selection-start-column="58" selection-end-line="99" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/links.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lolstyle.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="841">
+          <caret line="91" column="1" selection-start-line="91" selection-start-column="1" selection-end-line="91" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/champion.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2668">
+          <caret line="393" column="131" selection-start-line="393" selection-start-column="131" selection-end-line="393" selection-end-column="131" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pros.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="40" lean-forward="true" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/champions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1445">
+          <caret line="85" column="121" selection-start-line="85" selection-start-column="121" selection-end-line="85" selection-end-column="121" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1665">
+          <caret line="111" column="137" selection-start-line="111" selection-start-column="137" selection-end-line="111" selection-end-column="137" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pro.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6783">
+          <caret line="399" column="156" selection-start-line="399" selection-start-column="156" selection-end-line="399" selection-end-column="156" />
+          <folding>
+            <element signature="n#style#0;n#th#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Class/All.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="33" column="86" selection-start-line="33" selection-start-column="86" selection-end-line="33" selection-end-column="86" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Class/GamesDetails.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/header.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="10" selection-start-line="17" selection-start-column="10" selection-end-line="18" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Class/Champion.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2224">
+          <caret line="34" column="86" selection-start-line="34" selection-start-column="86" selection-end-line="34" selection-end-column="86" />
         </state>
       </provider>
     </entry>

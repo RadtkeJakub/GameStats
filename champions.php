@@ -83,7 +83,7 @@
                     foreach ($champions as $i => $champion)
                     {
                         echo "<tr class='tableIcon' onclick=\"window.location='/inzynierkav2/champion.php?champion=".$champion[0]."';\">";
-                        echo "<td class='float-left align-middle '><img src='http://ddragon.leagueoflegends.com/cdn/8.24.1/img/champion/".$champion[1].".png' width='48px' height='48px' alt='champion image' class='image mr-2'> ";
+                        echo "<td class='float-left align-middle '><img src='http://ddragon.leagueoflegends.com/cdn/9.2.1/img/champion/".$champion[1].".png' width='48px' height='48px' alt='champion image' class='image mr-2'> ";
                         echo $champion[1]."</td>";
                         echo "<td class='align-middle ";
                         if($champion[3] > 50) echo "text-success";

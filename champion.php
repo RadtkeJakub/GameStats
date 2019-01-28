@@ -37,7 +37,7 @@ require 'Class/Champion.php';
         <div class="text-center align-middle mt-3">
             <?php
             echo "<span class='h1'>".$name."</span><br>";
-            echo "<img class='img-fluid mt-0 pt-0 border-top-0' alt = 'image of ".$name."' src = 'http://ddragon.leagueoflegends.com/cdn/8.24.1/img/champion/".$name.".png'>";
+            echo "<img class='img-fluid mt-0 pt-0 border-top-0' alt = 'image of ".$name."' src = 'http://ddragon.leagueoflegends.com/cdn/9.2.1/img/champion/".$name.".png'>";
             ?>
         </div>
     </div>
@@ -73,17 +73,17 @@ require 'Class/Champion.php';
         <div class="text-center justify-content-center">
             <?php
                 $summoners = $champion -> getSummoners();
-                $summonerInfoJson = file_get_contents("http://ddragon.leagueoflegends.com/cdn/8.24.1/data/en_GB/summoner.json");
+                $summonerInfoJson = file_get_contents("http://ddragon.leagueoflegends.com/cdn/9.2.1/data/en_GB/summoner.json");
                 $summonerInfo = json_decode($summonerInfoJson);
                 $summonerSpells = $summonerInfo -> data;
 
 
                 $runes = $champion -> getRunes();
-                $runesInfoJson = file_get_contents("http://ddragon.leagueoflegends.com/cdn/8.24.1/data/en_GB/runesReforged.json");
+                $runesInfoJson = file_get_contents("http://ddragon.leagueoflegends.com/cdn/9.2.1/data/en_GB/runesReforged.json");
                 $runesInfo = json_decode($runesInfoJson);
 
                 $items = $champion -> getItems();
-                $itemsInfoJson = file_get_contents("http://ddragon.leagueoflegends.com/cdn/8.24.1/data/en_GB/item.json");
+                $itemsInfoJson = file_get_contents("http://ddragon.leagueoflegends.com/cdn/9.2.1/data/en_GB/item.json");
                 $itemsInfo = json_decode($itemsInfoJson);
 
 
@@ -104,7 +104,7 @@ require 'Class/Champion.php';
                             {
                                 if($summoner[0] == $summonerSpell -> key)
                                 {
-                                    echo "<td data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($summonerSpell -> name,ENT_QUOTES)."</b><br>".htmlspecialchars($summonerSpell -> description,ENT_QUOTES)."'><img class='img-fluid' alt = 'image of ".$summonerSpell -> id."' src = 'http://ddragon.leagueoflegends.com/cdn/8.24.1/img/spell/".$summonerSpell -> id.".png'></td>";
+                                    echo "<td data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($summonerSpell -> name,ENT_QUOTES)."</b><br>".htmlspecialchars($summonerSpell -> description,ENT_QUOTES)."'><img class='img-fluid' alt = 'image of ".$summonerSpell -> id."' src = 'http://ddragon.leagueoflegends.com/cdn/9.2.1/img/spell/".$summonerSpell -> id.".png'></td>";
                                 }
                             }
                         }
@@ -191,7 +191,7 @@ require 'Class/Champion.php';
                     $itemName = $itemsInfo -> data -> $itemId -> name;
                     $itemDescription = $itemsInfo -> data -> $itemId -> description;
                     echo "<td data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($itemName,ENT_QUOTES)."</b><br><br>".htmlspecialchars($itemDescription,ENT_QUOTES)."'>";
-                    echo "<img class = 'img-fluid' alt = 'image of ".$item[0]."' src = 'http://ddragon.leagueoflegends.com/cdn/8.24.1/img/item/".$item[0].".png'>";
+                    echo "<img class = 'img-fluid' alt = 'image of ".$item[0]."' src = 'http://ddragon.leagueoflegends.com/cdn/9.2.1/img/item/".$item[0].".png'>";
                     echo "</td>";
                     if ($i == 4) break;
                 }
@@ -219,7 +219,7 @@ require 'Class/Champion.php';
                         $itemName = $itemsInfo -> data -> $itemId -> name;
                         $itemDescription = $itemsInfo -> data -> $itemId -> description;
                         echo "<td data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($itemName,ENT_QUOTES)."</b><br><br>".htmlspecialchars($itemDescription,ENT_QUOTES)."'>";
-                        echo "<img class = 'img-fluid' alt = 'image of ".$item[0]."' src = 'http://ddragon.leagueoflegends.com/cdn/8.24.1/img/item/".$item[0].".png'>";
+                        echo "<img class = 'img-fluid' alt = 'image of ".$item[0]."' src = 'http://ddragon.leagueoflegends.com/cdn/9.2.1/img/item/".$item[0].".png'>";
                         echo "</td>";
 
                     }
@@ -250,7 +250,7 @@ require 'Class/Champion.php';
             <tr>
                 <?php
                 $bestWith = $champion ->getBestTeamMatchups();
-                $championInfoJson = file_get_contents("http://ddragon.leagueoflegends.com/cdn/8.24.1/data/en_GB/championFull.json");
+                $championInfoJson = file_get_contents("http://ddragon.leagueoflegends.com/cdn/9.2.1/data/en_GB/championFull.json");
                 $championInfo = json_decode($championInfoJson);
                 for($i=0;$i<5;$i++)
                 {
@@ -258,7 +258,7 @@ require 'Class/Champion.php';
                     $mateName = $championInfo -> keys -> $mateId;
                     $mateTitle = $championInfo -> data -> $mateName -> title;
                     echo "<th data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($mateName,ENT_QUOTES)."</b><br>".htmlspecialchars($mateTitle,ENT_QUOTES)."'>";
-                    echo "<img class='img-fluid' alt = 'image of ".$mateName."' src = 'http://ddragon.leagueoflegends.com/cdn/8.24.1/img/champion/".$mateName.".png' width=60px height=60px>";
+                    echo "<img class='img-fluid' alt = 'image of ".$mateName."' src = 'http://ddragon.leagueoflegends.com/cdn/9.2.1/img/champion/".$mateName.".png' width=60px height=60px>";
                     echo "</th>";
                 }
                 ?>
@@ -286,7 +286,7 @@ require 'Class/Champion.php';
             <tr>
                 <?php
                 $worstWith = $champion ->getWorstTeamMatchups();
-                $championInfoJson = file_get_contents("http://ddragon.leagueoflegends.com/cdn/8.24.1/data/en_GB/championFull.json");
+                $championInfoJson = file_get_contents("http://ddragon.leagueoflegends.com/cdn/9.2.1/data/en_GB/championFull.json");
                 $championInfo = json_decode($championInfoJson);
                 for($i=0;$i<5;$i++)
                 {
@@ -299,7 +299,7 @@ require 'Class/Champion.php';
                     $mateName = $championInfo -> keys -> $mateId;
                     $mateTitle = $championInfo -> data -> $mateName -> title;
                     echo "<th data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($mateName,ENT_QUOTES)."</b><br>".htmlspecialchars($mateTitle,ENT_QUOTES)."'>";
-                    echo "<img class='img-fluid' alt = 'image of ".$mateName."' src = 'http://ddragon.leagueoflegends.com/cdn/8.24.1/img/champion/".$mateName.".png' width=60px height=60px>";
+                    echo "<img class='img-fluid' alt = 'image of ".$mateName."' src = 'http://ddragon.leagueoflegends.com/cdn/9.2.1/img/champion/".$mateName.".png' width=60px height=60px>";
                     echo "</th>";
                 }
                 ?>
@@ -328,7 +328,7 @@ require 'Class/Champion.php';
             <tr>
                 <?php
                 $bestVS = $champion ->getBestEnemies();
-                $championInfoJson = file_get_contents("http://ddragon.leagueoflegends.com/cdn/8.24.1/data/en_GB/championFull.json");
+                $championInfoJson = file_get_contents("http://ddragon.leagueoflegends.com/cdn/9.2.1/data/en_GB/championFull.json");
                 $championInfo = json_decode($championInfoJson);
                 foreach($bestVS as $i => $best)
                 {
@@ -343,7 +343,7 @@ require 'Class/Champion.php';
                     $mateName = $championInfo -> keys -> $mateId;
                     $mateTitle = $championInfo -> data -> $mateName -> title;
                     echo "<th data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($mateName,ENT_QUOTES)."</b><br>".htmlspecialchars($mateTitle,ENT_QUOTES)."'>";
-                    echo "<img class='img-fluid' alt = 'image of ".$mateName."' src = 'http://ddragon.leagueoflegends.com/cdn/8.24.1/img/champion/".$mateName.".png' width=60px height=60px>";
+                    echo "<img class='img-fluid' alt = 'image of ".$mateName."' src = 'http://ddragon.leagueoflegends.com/cdn/9.2.1/img/champion/".$mateName.".png' width=60px height=60px>";
                     echo "</th>";
                 }
                 ?>
@@ -375,7 +375,7 @@ require 'Class/Champion.php';
             <tr>
                 <?php
                 $worstVS = $champion ->getWorstEnemies();
-                $championInfoJson = file_get_contents("http://ddragon.leagueoflegends.com/cdn/8.24.1/data/en_GB/championFull.json");
+                $championInfoJson = file_get_contents("http://ddragon.leagueoflegends.com/cdn/9.2.1/data/en_GB/championFull.json");
                 $championInfo = json_decode($championInfoJson);
 
                 foreach($worstVS as $i => $worst)
@@ -391,7 +391,7 @@ require 'Class/Champion.php';
                     $mateName = $championInfo -> keys -> $mateId;
                     $mateTitle = $championInfo -> data -> $mateName -> title;
                     echo "<th data-toggle='tooltip' data-html='true' data-placement='top' title='<b>".htmlspecialchars($mateName,ENT_QUOTES)."</b><br>".htmlspecialchars($mateTitle,ENT_QUOTES)."'>";
-                    echo "<img class='img-fluid' alt = 'image of ".$mateName."' src = 'http://ddragon.leagueoflegends.com/cdn/8.24.1/img/champion/".$mateName.".png' width=60px height=60px>";
+                    echo "<img class='img-fluid' alt = 'image of ".$mateName."' src = 'http://ddragon.leagueoflegends.com/cdn/9.2.1/img/champion/".$mateName.".png' width=60px height=60px>";
                     echo "</th>";
                 }
                 ?>
